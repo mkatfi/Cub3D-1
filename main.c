@@ -6,68 +6,97 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:28:35 by iantar            #+#    #+#             */
-/*   Updated: 2023/05/23 22:49:41 by iantar           ###   ########.fr       */
+/*   Updated: 2023/06/01 23:09:03 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cub3d.h"
 
-int	high_count(fd)
+int	get_hight_map(int fd)
 {
 	char	*line;
 	int		len;
+	//int		fd;
 
-	line = get_next_line(fd);
 	len = 0;
+	//fd = open(map_name, O_RDONLY, 0644);
+	if (fd == -1)
+		return (write(2, "fd can't open\n", 14), -1);
+	line = get_next_line(fd);
 	while (line)
 	{
 		len++;
 		free(line);
 		line = get_next_line(fd);
 	}
+	//close(fd);
 	return (len);
 }
 
-// int	width_count()
-// {
-// 	char	*line;
-	
-// }
+int	get_width_map(int fd)
+{
+	char	*line;
+	int		len;
+	//int		fd;
 
-// char	**read_map(fd)
-// {
-// 	char	*line;
+	len = 0;
+	//fd = open(map_name, O_RDONLY, 0644);
+	if (fd == -1)
+		return (write(2, "fd can't open\n", 14), -1);
+	line = get_next_line(fd);
+	if (line)
+	{
+		while (line[len] && line[len] != '\n')
+			len++;
+		free(line);
+	}
+	//close(fd);
+	return (len);
+}
 
-// 	line = get_next_line(fd);
-	
-// }
+char	*rm_new_line(char *line)
+{
+	int	i;
 
-char	**get_map(void)
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == '\n')
+			line[i] = '\0';
+	}
+	return (line);
+}
+
+char	**get_map(char *map_name)
 {
 	char	**map;
-	int		i;
-	int		j;
-	char	c;
+	char	*line;
+	t_vars	var;
 
-	map = malloc(sizeof(char *) * 11);
-	i = 0;
-	while (i < 10)
+	var.fd = open(map_name, O_RDONLY, 0644);
+	if (var.fd < 0)
+		return (NULL);
+	var.hight = get_hight_map(var.fd);
+	close(var.fd);
+	var.fd = open(map_name, O_RDONLY, 0644);
+	var.width = get_width_map(var.fd);
+	close(var.fd);
+	var.fd = open(map_name, O_RDONLY, 0644);
+	 printf("var.hight:%d,  var.width:%d\n", var.hight, var.width);
+	map = malloc(sizeof(char *) * (var.hight + 2));
+	var.i = 0;
+	line = get_next_line(var.fd);
+	printf("line:%s", line);
+	while (line)
 	{
-		map[i] = malloc(11 * sizeof(char));
-		j = 0;
-		while (j < 10)
-		{
-			if (i == 0 || i == 9 || j == 0 || j == 9 || i == j)
-				c = '1';
-			else
-				c = '0';
-			map[i][j] = c;
-			j++;
-		}
-		map[i][j] = '\0';
-		i++;		
+		//map[var.i] = ft_strdup(line);
+		map[var.i] = ft_strdup(rm_new_line(line));
+		//free(line);
+		line = get_next_line(var.fd);
+		(var.i)++;
+		
 	}
-	map[i] = NULL;
+	map[var.i] = NULL;
 	return (map);
 }
 
@@ -98,7 +127,7 @@ void	draw_square(int ref, int size, t_data data)
 	}
 }
 
-void	put_square(t_pos pos, int size, t_data data)
+void	put_square(int x, int y, int size, t_data data)
 {
 	int	i;
 	int	bits_per_pixel;
@@ -120,41 +149,58 @@ void	put_square(t_pos pos, int size, t_data data)
 			data.get_adr[i] = 0;//more it become big the color becames less bright 
 		i++;
 	}
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, pos.x, pos.y);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, x, y);
 }
 
-void	render_map(char **map)
+int	len_ptr(char **ptr)
+{
+	int	len;
+
+	len = 0;
+	while (ptr[len])
+		len++;
+	return (len);
+}
+
+void	render_map(t_data data)
 {
 	int	i;
 	int	j;
+	int	width;
+	int	hight;
 
 	i = 0;
 	j = 0;
-	while (i < 10)
+	width = ft_strlen(data.map[0]);
+	hight = len_ptr(data.map);
+	while (i < hight)
 	{
 		j = 0;
-		while (j < 10)
+		while (j < width)
 		{
-			if (map[i][j] == '')
+			if (data.map[i][j] == '1')
+				put_square(j * 100, i * 100, 100, data);
+			j++;
 		}
+		i++;
 	}
 	
 }
 
 //char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel, int *size_line, int *endian);
-int	main(void)
+int	main(int ac, char *av[])
 {
-	t_pos	pos;
 	t_data	data;
 
+	if (ac != 2)
+		return (0);
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, 1000, 1000, "Cub3D");
-	data.map = get_map();
-	pos.x = 0;
-	pos.y = 0;
-	data.map = get_map();
+	data.map = get_map(av[1]);
+	//print_map(data.map);
+	if (!data.map || !*data.map)
+		return (0);
 	render_map(data);
-	put_square(pos, 100, data);
-	//printf("bits_per_pixel:%d, size_line:%d, endian:%d\n", bits_per_pixel, size_line, endian);
+	//put_square(0, 0, 100, data);
 	mlx_loop(data.mlx);
 }

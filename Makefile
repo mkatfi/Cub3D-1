@@ -2,7 +2,7 @@ NAME = cub3D
 
 LIBMLX = libmlx.a
 
-SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c
+SRC = main.c GNL/get_next_line.c GNL/get_next_line_utils.c src/utils1.c
 
 OBJ = ${SRC:.c=.o}
 
