@@ -1,2 +1,2 @@
 # Cub3D
-My first RayCaster with miniLibX
+Our first RayCaster with miniLibX
