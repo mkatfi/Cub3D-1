@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/28 09:16:40 by iantar           ###   ########.fr       */
+/*   Updated: 2023/07/28 13:15:18 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	render_map(t_data *data, int pos_x, int pos_y)
+void	render_map(t_data *data, float pos_x, float pos_y, float angle)
 {
 	int	i;
 	int	j;
@@ -55,5 +55,6 @@ void	render_map(t_data *data, int pos_x, int pos_y)
 		i++;
 	}
 	draw_player(pos_x, pos_y, 5, data);
+	player_direction(pos_x, pos_y, angle, data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/28 09:17:04 by iantar           ###   ########.fr       */
+/*   Updated: 2023/07/28 10:13:53 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@
 # define RIGHT_ARR 124
 # define RED 0x00FF0000
 # define BLACK 0x00000000
+# define SPEED 5
 #endif

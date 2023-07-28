@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/27 14:48:30 by iantar           ###   ########.fr       */
+/*   Updated: 2023/07/28 11:30:26 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@
 
 // }
 
+// t_pos	get_pos(char *map)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while (map[i][j])
+// 		{
+// 			if (map[i][j] == 'N' )
+// 		}
+// 	}
+// }
+
+//initialize angle, pos_x, pos_y
+//if :: E (angle == 0) , N (angle == 90) , W (angle == 180) , S (angle == 270)
 int	main(int ac, char *av[])
 {
 	t_cube3d	*cube;
@@ -36,7 +53,7 @@ int	main(int ac, char *av[])
 	data->m_height = cube->m_height;
 	data->m_width = 8;
 	data->mlx_win = mlx_new_window(data->mlx, 50 * data->m_width, 50 * data->m_height, "Cub3D");
-	render_map(data, 10, 10);
+	render_map(data, 75, 75, 0);
 	player_hooks(data);
 	mlx_loop(data->mlx);
 	return (0);
