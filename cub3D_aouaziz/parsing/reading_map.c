@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:49:31 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/26 16:56:41 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:50:30 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ t_cube3d	*get_Map_Height(t_cube3d *cube, int fd)
 	}
 	close(fd);
 	cube->m_height = height;
-	cube->map = (char **)malloc(sizeof(char *) * (height + 1));
+	cube->map = (char **)ft_malloc(sizeof(char *) * (height + 1));
 	cube->map[height] = NULL;
+	free(line);
 	return (cube);
 }
 void	check_Map_Height_And_Width(char **map)
@@ -57,24 +58,6 @@ void	check_Map_Height_And_Width(char **map)
 	}
 }
 
-char	**create_new_map(char **map, int max_len)
-{
-	int		i;
-	char	**n_map;
-
-	i = 0;
-	while (map[i])
-		i++;
-	n_map = ft_calloc(i + 1, sizeof(char *));
-	i = 0;
-	while (map[i])
-	{
-		n_map[i] = ft_calloc(max_len + 1, sizeof(char));
-		n_map[i] = ft_strcpy(n_map[i], map[i]);
-		i++;
-	}
-	return (n_map);
-}
 
 void	read_File_And_Parse(t_cube3d *cube, int fd)
 {
@@ -100,6 +83,7 @@ void	read_File_And_Parse(t_cube3d *cube, int fd)
 		}
 		free(line);
 	}
+	free(line);
 	cube->map[i] = NULL;
 	start_Map(cube);
 }

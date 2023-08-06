@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/28 13:15:18 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/04 10:47:23 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	render_map(t_data *data, float pos_x, float pos_y, float angle)
+void	render_map(t_data *data, t_pos pos, t_dir dir)
 {
 	int	i;
 	int	j;
@@ -44,17 +44,37 @@ void	render_map(t_data *data, float pos_x, float pos_y, float angle)
 		j = 0;
 		while (j < data->m_width * 50)
 		{
-			if (!(i % 50) || !(j % 50))
-				my_mlx_pixel_put(data, j, i, BLACK);
-			else if (data->map[i / 50][j / 50] == '1')
-				my_mlx_pixel_put(data, j, i, 0x00aea587);
+			if (data->map[i / 50][j / 50] == '1')
+			{
+				if (!(i % 50) || !(j % 50))
+					my_mlx_pixel_put(data, j, i, WITE);
+				else
+					my_mlx_pixel_put(data, j, i, BLACK);
+			}
 			else
-				my_mlx_pixel_put(data, j, i, 0x004e4187);
+			{
+				if (!(i % 50) || !(j % 50))
+					my_mlx_pixel_put(data, j, i, BLACK);
+				else
+					my_mlx_pixel_put(data, j, i, WITE);
+			}
 			j++;
 		}
 		i++;
 	}
-	draw_player(pos_x, pos_y, 5, data);
-	player_direction(pos_x, pos_y, angle, data);
+	draw_player(pos, PLAYER_DIM, data, RED);
+	float	k = 0;
+	while (k <= PI / 5)
+	{
+		draw_dirction(data, pos, dir, dir.angle + k, NEON_GREEN);
+		k += 0.01;
+	}
+	k = 0;
+	while (k <= PI / 5)
+	{
+		draw_dirction(data, pos, dir, dir.angle - k, NEON_GREEN);
+		k += 0.01;
+	}
+	_dir_(data, pos, dir, dir.angle, RED);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

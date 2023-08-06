@@ -1,59 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/23 08:31:14 by aouaziz           #+#    #+#             */
+/*   Created: 2023/02/24 16:21:20 by iantar            #+#    #+#             */
 /*   Updated: 2023/07/27 15:50:30 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "get_next_line.h"
 
-char	*ft_strdup(const char *s1)
+size_t	ft_strlen(const char *str)
 {
-	char	*s;
-	size_t	slen;
+	size_t	len;
 
-	slen = ft_strlen(s1) + 1;
-	s = ft_malloc(slen * sizeof(char));
-	if (!s)
+	if (!str)
 		return (0);
-	s = ft_memcpy(s, s1, slen);
-	return (s);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
-char	*ft_cstrdup(const char *s1)
-{
-	char	*s;
-	size_t	slen;
 
-	slen = ft_strlen(s1) + 1;
-	s = ft_calloc(slen , sizeof(char));
-	if (!s)
-		return (0);
-	s = ft_memcpy(s, s1, slen);
-	return (s);
-}
-char	*ft_cub_strdup(const char *s1,int len)
+char	*ft_strjoin(char **save_buf, char *buf, int len_buf)
 {
-	int	i;
-	char	*ptr;
+	int		i;
+	int		j;
+	int		len;
+	char	*rtn;
 
 	i = 0;
-	ptr = ft_calloc(len + 1, sizeof(char));
-	if (!ptr)
-		return (0);
-	while (i < ft_strlen(s1))
-	{
-		ptr[i] = ((char *)s1)[i];
-		i++;
-	}
+	len = ft_strlen(*save_buf);
+	rtn = ft_malloc(len + len_buf + 1);
+	if (!rtn)
+		return (NULL);
 	while (i < len)
 	{
-		ptr[i] = ' ';
+		rtn[i] = *(*save_buf + i);
 		i++;
 	}
-	return (ptr);
+	j = 0;
+	while (j < len_buf)
+		rtn[i++] = buf[j++];
+	ft_free(save_buf);
+	rtn[i] = '\0';
+	return (rtn);
 }

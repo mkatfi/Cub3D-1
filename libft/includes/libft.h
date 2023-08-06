@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 21:48:06 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/25 14:10:11 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 14:26:19 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_free
+{
+	unsigned long	adres;
+	struct s_free	*next;
+}					t_free;
 
 typedef struct s_list
 {
@@ -83,4 +89,9 @@ int					ft_color_resolution(char *str);
 char				*ft_strcpy(char *s1, const char *s2);
 void				ft_print_error(char *str);
 char				*ft_cub_strdup(const char *s1, int len);
+void				free_double_str(char **str);
+void				*ft_malloc(int size);
+t_free				*ft_lstnew_free(void *content);
+t_free				*ft_lstlast_free(t_free *lst);
+void				ft_lstadd_back_free(t_free **lst, t_free *new);
 #endif

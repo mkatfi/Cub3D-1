@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 18:55:46 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 10:31:24 by iantar           ###   ########.fr       */
+/*   Updated: 2023/07/28 18:48:27 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	start_Map(t_cube3d *cube)
 	print_cube3d(cube);
 }
 
+
 // int	main(int ac, char *av[])
 // {
-// 	t_cube3d	*cube;
+//  	t_cube3d	*cube;
 
-// 	cube = malloc(sizeof(t_cube3d));
+// 	cube = ft_malloc(sizeof(t_cube3d));
 // 	cube = initialize_Cube3D(cube);
 // 	if (ac != 2)
 // 		ft_print_error("Incorrect Number of Arguments\n");
-// 	check_File_And_Read_it(av[1], cube);
+// 	check_File_And_Read_it(av[1]);
 // }

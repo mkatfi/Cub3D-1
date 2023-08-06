@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textur_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:58:21 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 09:35:35 by iantar           ###   ########.fr       */
+/*   Updated: 2023/07/27 15:53:51 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cube3d	*add_textur_to_list(t_cube3d *cube, char *content, int type)
 {
 	t_textur	*new;
 
-	new = malloc(sizeof(t_textur));
+	new = ft_malloc(sizeof(t_textur));
 	if (!new)
 		return (NULL);
 	new->type = type;

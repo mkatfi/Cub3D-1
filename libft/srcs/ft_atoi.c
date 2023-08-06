@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 04:29:22 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/23 14:27:19 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 13:56:48 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,17 @@ int	ft_color_resolution(char *str)
 	int		i;
 	size_t	r;
 	char **tab;
+	char *line;
 
 	i = 0;
 	r = 0;
+	line  = ft_strtrim(str," ");
 	if (!str || !ft_checkerror(str))
 		ft_print_error("Invalid Color Parameter\n");
-	tab =  ft_split((ft_strtrim(str," ") ), ',');
+	tab =  ft_split(line, ',');
 	r = (ft_atoi_color(tab[0])  * 65536) + ( ft_atoi_color(tab[1]) * 256) + ft_atoi_color(tab[2]);
+	free(line);
+	free_double_str(tab);
 	return (r);
 }
 

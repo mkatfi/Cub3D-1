@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/28 15:58:24 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/04 10:52:10 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,146 +16,156 @@
 #include "../includes/structures_iantar.h"
 #include "../includes/macros.h"
 
-void	player_direction(int x, int y, float a, t_data *data)
+int	check_(t_pos pos, char **map, t_dir dir)
 {
-	int	i;
+	if (map[(int)(((-1) * dir.y + pos.y)/50)][(int)((dir.x + pos.x)/50)] != '1' && map[(int)(dir.y + pos.y)/50][(int)(((-1) * dir.x + pos.x)/50)] != '1')
+		return (0);
+	return (1);
+}
+int	is_player_will_hit_wall(float pos_x, float pos_y, char **map, t_dir dir)
+{
+	float	a;
 
-	i = 0;
-	while (i < 50)
+	a = 0;
+	while (a <= 2 * PI)
 	{
-		printf("pos_x:%f\n", data->pos_x);
-		printf("pos_y:%f\n", data->pos_y);
-		my_mlx_pixel_put(data, x + i * cos(a), y + i * sin(a), RED);
-		i++;
+		if (map[(int)((pos_y + PLAYER_DIM * sin(dir.angle + a)) / 50)][(int)((pos_x + PLAYER_DIM * cos(dir.angle + a)) / 50)] == '1')
+			return (1);
+		a = a + PI / 2;
 	}
+	return(0);
 }
 
-void	draw_player(float x, float y, int r, t_data *data)
+void	draw_player(t_pos pos, int r, t_data *data, int color)
 {
-	float	i, j;
+	float	i;
+	float	j;
 
 	j = 0;
 	while (j < r)
 	{
 		i = 0;
-		while (i < 180)
+		while (i < 2 * PI)
 		{
-			my_mlx_pixel_put(data, x + j * cos(i), y + j * sin(i), RED);
-			i = i + 0.5;
+			my_mlx_pixel_put(data, pos.x + j * cos(i), pos.y + j * sin(i), color);
+			i = i + 0.1;
 		}
 		j = j + 0.1;
 	}
 }
 
+float	vect_magnitude(t_pos pos, t_dir dir)
+{
+	float	x;
+	float	y;
+
+	x = (dir.x - pos.x) * (dir.x - pos.x);
+	y = (dir.y - pos.y) * (dir.y - pos.y);
+	return (sqrt(x + y));
+}
+
+t_dir	rotation(t_dir dir, float angle)
+{
+	t_dir	new_dir;
+
+	new_dir.x = dir.x * (cos(angle) - sin(angle));
+	new_dir.y = dir.y * (cos(angle) + sin(angle));
+	return (new_dir);
+}
+
+void	draw_dirction(t_data *data, t_pos pos, t_dir dir, float angle, int color)
+{
+	float		i;
+
+	(void)dir;
+	i = 0.1;
+	while (data->map[(int)((pos.y + i * sin(angle)) / 50)][(int)((pos.x + i * cos(angle)) / 50)] != '1' && data->map[(int)((pos.y + i * sin(angle) + PI/2) / 50)][(int)((pos.x + i * cos(angle) + PI/2) / 50)] != '1')
+	{
+		my_mlx_pixel_put(data, pos.x + i * cos(angle), pos.y + i * sin(angle), color);
+		i += 0.1;
+	}
+}
+
+void	_dir_(t_data *data, t_pos pos, t_dir dir, float angle, int color)
+{
+	float		i;
+
+	(void)dir;
+	i = 0.1;
+	while (i <= 50)
+	{
+		my_mlx_pixel_put(data, pos.x + i * cos(angle), pos.y + i * sin(angle), color);
+		i += 0.1;
+	}
+}
+
+int	hit_wall(char **map, float next_x, float next_y)
+{
+	if (map[(int)((next_y) / 50)][(int)(next_x / 50)] == '1')
+		return (1);
+	return (0);
+}
+
 int	key_press(int key_code, t_data *data)
 {
-	static float x, y;
-	int	i, j;
-	static float	angle;
+	static t_pos	pos;
+	static t_dir	dir;
+	float	direction;
 
-	if (!x && !y)
+	if (!pos.x && !pos.y)
 	{
-		x = 75;
-		y = 75;
+		pos.x = 75;
+		pos.y = 75;
+	}
+	if (!dir.x && !dir.y && !dir.angle)
+	{
+		dir.angle = 0;
+		dir.x = cos(dir.angle);
+		dir.y = sin(dir.angle);
 	}
 	if (key_code == ESC)
 		exit(1);
 	(void)data;
-	i = x;
-	j = y;
-	if (key_code == W && y + 5 > 0 && data->map[(j - 2 * SPEED) / 50][i / 50] != '1')
+	direction = 1;
+	if (key_code == W && !is_player_will_hit_wall(pos.x + dir.x * SPEED, pos.y + dir.y * SPEED, data->map, dir))
 	{
-		y = y + SPEED * sin(angle);
-		x = x + SPEED * cos(angle);
-		data->pos_y = y;
-		data->pos_x = x;
+		pos.x += dir.x * SPEED;
+		pos.y += dir.y * SPEED; 
 	}
-	if (key_code == S && y + 14 + SPEED < data->m_height * 50 && data->map[(j + SPEED) / 50][i / 50] != '1')
+	if (key_code == S && !is_player_will_hit_wall(pos.x + (-1) * dir.x * SPEED, pos.y + (-1) * dir.y * SPEED, data->map, dir))
 	{
-		y = y + SPEED * sin(angle);
-		x = x + SPEED * cos(angle);
-		data->pos_y = y;
-		data->pos_x = x;
+		pos.x += (-1) * dir.x * SPEED;
+		pos.y += (-1) * dir.y * SPEED;
 	}
-	if (key_code == D && x + 14 + SPEED < data->m_width * 50 && data->map[j / 50][(i + SPEED) / 50] != '1')
+	if (key_code == D && !is_player_will_hit_wall(pos.x + (-1) * dir.y * SPEED, pos.y + dir.x * SPEED, data->map, dir))
 	{
-		y = y + SPEED * sin(angle);
-		x = x + SPEED * cos(angle);
-		data->pos_y = y;
-		data->pos_x = x;
+		pos.x += (-1) * dir.y * SPEED;
+		pos.y += dir.x * SPEED; 
 	}
-	if (key_code == A && x + 5 > 0 && data->map[j / 50][(i - 2 * SPEED) / 50] != '1')
+	if (key_code == A && !is_player_will_hit_wall(pos.x + dir.y * SPEED, pos.y + (-1) * dir.x * SPEED, data->map, dir))
 	{
-		y = y + SPEED * sin(angle);
-		x = x + SPEED * cos(angle);
-		data->pos_y = y;
-		data->pos_x = x;
-	}
-	if (key_code == LEFT_ARR)
-	{
-		angle = angle - 0.1;
+		pos.x += dir.y * SPEED;
+		pos.y += (-1) * dir.x * SPEED; 
 	}
 	if (key_code == RIGHT_ARR)
 	{
-		angle = angle + 0.1;
+		if (dir.angle + 0.1 >= 2 * PI)
+			dir.angle = 0;
+		dir.angle += 0.1;
+		dir.x = cos(dir.angle);
+		dir.y = sin(dir.angle);
 	}
-	render_map(data, x, y, angle);
-	//mlx_destroy_image(data->mlx, data->img);
+	if (key_code == LEFT_ARR)
+	{
+		if (dir.angle - 0.1 < 0)
+			dir.angle = 2 * PI;
+		dir.angle -= 0.1;
+		dir.x = cos(dir.angle);
+		dir.y = sin(dir.angle);
+	}
+	render_map(data, pos, dir);
 	return (0);
 }
-
-// int	key_press(int key_code, t_data *data)
-// {
-// 	static float x, y;
-// 	int	i, j;
-// 	static float	angle;
-
-// 	if (!x && !y)
-// 	{
-// 		x = 75;
-// 		y = 75;
-// 	}
-// 	if (key_code == ESC)
-// 		exit(1);
-// 	(void)data;
-// 	i = x;
-// 	j = y;
-// 	if (key_code == W && y + 5 > 0 && data->map[(j - 2 * SPEED) / 50][i / 50] != '1')
-// 	{
-// 		y -= SPEED;
-// 		data->pos_y = y + SPEED * sin(angle);
-// 		data->pos_x = x + SPEED * cos(angle);
-// 	}
-// 	if (key_code == S && y + 14 + SPEED < data->m_height * 50 && data->map[(j + SPEED) / 50][i / 50] != '1')
-// 	{
-// 		y += SPEED;
-// 		data->pos_y = y + SPEED * sin(angle);
-// 		data->pos_x = x + SPEED * cos(angle);
-// 	}
-// 	if (key_code == D && x + 14 + SPEED < data->m_width * 50 && data->map[j / 50][(i + SPEED) / 50] != '1')
-// 	{
-// 		x += SPEED;
-// 		data->pos_y = y + SPEED * sin(angle);
-// 		data->pos_x = x + SPEED * cos(angle);
-// 	}
-// 	if (key_code == A && x + 5 > 0 && data->map[j / 50][(i - 2 * SPEED) / 50] != '1')
-// 	{
-// 		x -= SPEED;
-// 		data->pos_y = y + SPEED * sin(angle);
-// 		data->pos_x = x + SPEED * cos(angle);
-// 	}
-// 	if (key_code == LEFT_ARR)
-// 	{
-// 		angle = angle - 0.1;
-// 	}
-// 	if (key_code == RIGHT_ARR)
-// 	{
-// 		angle = angle + 0.1;
-// 	}
-// 	render_map(data, x, y, angle);
-// 	//mlx_destroy_image(data->mlx, data->img);
-// 	return (0);
-// }
 
 int	close_win(void)
 {
@@ -167,7 +177,5 @@ void	player_hooks(t_data *data)
 {
 	mlx_hook(data->mlx_win, ON_KEYDOWN, 0, key_press, data);
 	mlx_hook(data->mlx_win, ON_DESTROY, 0, close_win, data);
-	//render_map(data);
-	//mlx_loop_hook(data->mlx, key_press, data);
 	mlx_loop(data->mlx);
 }

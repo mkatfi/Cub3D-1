@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 08:53:16 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/02/18 22:58:29 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:50:30 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_save(char *s)
 		free(s);
 		return (0);
 	}
-	save = malloc(sizeof(char) * (get_strlen(s) - i + 1));
+	save = ft_malloc(sizeof(char) * (get_strlen(s) - i + 1));
 	if (!s)
 		return (0);
 	i++;
@@ -48,7 +48,7 @@ char	*ft_get_line(char *s)
 		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
-	save = malloc(sizeof(char) * (i + 2));
+	save = ft_malloc(sizeof(char) * (i + 2));
 	if (!save)
 		return (0);
 	i = 0;
@@ -71,7 +71,7 @@ char	*read_buf(int fd, char *s)
 	char	*buff;
 	int		r;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buff = ft_malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (0);
 	r = 1;

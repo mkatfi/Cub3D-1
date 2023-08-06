@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:18:02 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/26 16:56:22 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 15:11:53 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	check_Zero_Surroundings(t_cube3d *cube)
 		}
 		i++;
 	}
+	
 }
 int	ft_skip_new_line(char **line, int y)
 {

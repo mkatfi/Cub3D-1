@@ -6,7 +6,7 @@
 /*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 11:06:00 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/02/25 11:31:33 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/07/27 13:46:24 by aouaziz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,16 @@ void	ft_free(char **str)
 		free(str[i]);
 		i++;
 	}
+	free(str);
+}
+void	free_double_str(char **str)
+{
+	int	i;
+
+	i = -1;
+	if (!str)
+		return ;
+	while (str[++i])
+		free(str[i]);
 	free(str);
 }
