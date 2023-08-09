@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/04 10:47:23 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:03:37 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,25 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 	j = 0;
 	if (!check)
 	{
-		data->img = mlx_new_image(data->mlx, data->m_width * 50, data->m_height * 50);
+		data->img = mlx_new_image(data->mlx, 24 * GRID_SQUAR, data->m_height * GRID_SQUAR);//data->m_width = 24
 		data->get_adr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &endian);
 	}
 	check = 1;
-	while (i < data->m_height * 50)
+	while (i < data->m_height * GRID_SQUAR)
 	{
 		j = 0;
-		while (j < data->m_width * 50)
+		while (j < data->m_width * GRID_SQUAR)
 		{
-			if (data->map[i / 50][j / 50] == '1')
+			if (data->map[i / GRID_SQUAR][j / GRID_SQUAR] == '1')
 			{
-				if (!(i % 50) || !(j % 50))
+				if (!(i % GRID_SQUAR) || !(j % GRID_SQUAR))
 					my_mlx_pixel_put(data, j, i, WITE);
 				else
 					my_mlx_pixel_put(data, j, i, BLACK);
 			}
 			else
 			{
-				if (!(i % 50) || !(j % 50))
+				if (!(i % GRID_SQUAR) || !(j % GRID_SQUAR))
 					my_mlx_pixel_put(data, j, i, BLACK);
 				else
 					my_mlx_pixel_put(data, j, i, WITE);
@@ -66,15 +66,21 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 	float	k = 0;
 	while (k <= PI / 5)
 	{
-		draw_dirction(data, pos, dir, dir.angle + k, NEON_GREEN);
+		data->k = k;
+		draw_dirction(data, pos, dir, dir.angle + k, NEON_GREEN);//add k as a parameter
 		k += 0.01;
+		printf("x=k*10=%f\n", k * 10);
 	}
 	k = 0;
 	while (k <= PI / 5)
 	{
+		data->k = k * (-1);
 		draw_dirction(data, pos, dir, dir.angle - k, NEON_GREEN);
 		k += 0.01;
+		//printf("x=k*10=%f\n", (-1) * (k * 10));
+		//PI/5 - k
 	}
-	_dir_(data, pos, dir, dir.angle, RED);
+	dir_vect(data, pos, dir, dir.angle, RED);
+	plan_vect(data, pos, dir.angle, BLUE);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

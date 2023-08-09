@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/04 10:52:10 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:09:36 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	check_(t_pos pos, char **map, t_dir dir)
 {
-	if (map[(int)(((-1) * dir.y + pos.y)/50)][(int)((dir.x + pos.x)/50)] != '1' && map[(int)(dir.y + pos.y)/50][(int)(((-1) * dir.x + pos.x)/50)] != '1')
+	if (map[(int)(((-1) * dir.y + pos.y)/GRID_SQUAR)][(int)((dir.x + pos.x)/GRID_SQUAR)] != '1' && map[(int)(dir.y + pos.y)/GRID_SQUAR][(int)(((-1) * dir.x + pos.x)/GRID_SQUAR)] != '1')
 		return (0);
 	return (1);
 }
@@ -29,7 +29,7 @@ int	is_player_will_hit_wall(float pos_x, float pos_y, char **map, t_dir dir)
 	a = 0;
 	while (a <= 2 * PI)
 	{
-		if (map[(int)((pos_y + PLAYER_DIM * sin(dir.angle + a)) / 50)][(int)((pos_x + PLAYER_DIM * cos(dir.angle + a)) / 50)] == '1')
+		if (map[(int)((pos_y + PLAYER_DIM * sin(dir.angle + a)) / GRID_SQUAR)][(int)((pos_x + PLAYER_DIM * cos(dir.angle + a)) / GRID_SQUAR)] == '1')
 			return (1);
 		a = a + PI / 2;
 	}
@@ -73,35 +73,77 @@ t_dir	rotation(t_dir dir, float angle)
 	return (new_dir);
 }
 
-void	draw_dirction(t_data *data, t_pos pos, t_dir dir, float angle, int color)
+// void	start_raycasting(float distance)
+// {
+// 	int	x;
+// 	int	y;	
+// }
+
+float	distance(float a_x, float a_y)
+{
+	return (sqrt(a_x * a_x + a_y * a_y));
+}
+
+void	draw_dirction(t_data *data, t_pos pos, t_dir dir, float angle, int color)//rays
 {
 	float		i;
 
 	(void)dir;
 	i = 0.1;
-	while (data->map[(int)((pos.y + i * sin(angle)) / 50)][(int)((pos.x + i * cos(angle)) / 50)] != '1' && data->map[(int)((pos.y + i * sin(angle) + PI/2) / 50)][(int)((pos.x + i * cos(angle) + PI/2) / 50)] != '1')
+	
+	while (data->map[(int)((pos.y + i * sin(angle)) / GRID_SQUAR)][(int)((pos.x + i * cos(angle)) / GRID_SQUAR)] != '1' && data->map[(int)((pos.y + i * sin(angle) + PI/2) / GRID_SQUAR)][(int)((pos.x + i * cos(angle) + PI/2) / GRID_SQUAR)] != '1')
+	{
+		my_mlx_pixel_put(data, pos.x + i * cos(angle), pos.y + i * sin(angle), color);
+		i += 0.1;
+	}
+	data->dir = dir;
+	data->v_angle = angle;
+	slow_version(data, distance(fabs(pos.x - pos.x + i * cos(angle)), fabs(pos.y - pos.y + i * sin(angle))));
+	//printf("ray_x:%f, ray_y:%f\n",pos.x + i * cos(angle),  pos.y + i * sin(angle));
+	//printf("pos_x:%f, pos_y:%f\n",pos.x,  pos.y);
+	printf("distance:%f\n", distance(fabs(pos.x - pos.x + i * cos(angle)), fabs(pos.y - pos.y + i * sin(angle))));
+	printf("angle of the ray:%f\n", angle);
+	//get pos in plan
+}
+
+void	dir_vect(t_data *data, t_pos pos, t_dir dir, float angle, int color)
+{
+	float		i;
+
+	(void)dir;
+	i = 0.1;
+	while (i <= GRID_SQUAR)
 	{
 		my_mlx_pixel_put(data, pos.x + i * cos(angle), pos.y + i * sin(angle), color);
 		i += 0.1;
 	}
 }
 
-void	_dir_(t_data *data, t_pos pos, t_dir dir, float angle, int color)
+void	plan_vect(t_data *data, t_pos pos, float angle, int color)
 {
-	float		i;
+	float	a;
+	float	ray_x;
+	float	ray_y;
 
-	(void)dir;
-	i = 0.1;
-	while (i <= 50)
+	ray_x = pos.x + GRID_SQUAR * cos(angle);
+	ray_y = pos.y + GRID_SQUAR * sin(angle);
+	a = 0;
+	while (a < GRID_SQUAR * tan(PI / 5))
 	{
-		my_mlx_pixel_put(data, pos.x + i * cos(angle), pos.y + i * sin(angle), color);
-		i += 0.1;
+		my_mlx_pixel_put(data, ray_x + a * cos(angle + PI / 2), ray_y + a * sin(angle + PI / 2), color);
+		a = a + 0.1;
+	}
+	a = 0;
+	while (a < GRID_SQUAR * tan(PI / 5))
+	{
+		my_mlx_pixel_put(data, ray_x + a * cos(angle - PI / 2), ray_y + a * sin(angle - PI / 2), color);
+		a = a + 0.1;
 	}
 }
 
 int	hit_wall(char **map, float next_x, float next_y)
 {
-	if (map[(int)((next_y) / 50)][(int)(next_x / 50)] == '1')
+	if (map[(int)((next_y) / GRID_SQUAR)][(int)(next_x / GRID_SQUAR)] == '1')
 		return (1);
 	return (0);
 }

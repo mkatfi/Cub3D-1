@@ -5,7 +5,7 @@ LIBMLX = libmlx.a
 LIBFT = libft.a
 
 SRC = main.c cub3D_iantar/utils1.c cub3D_iantar/player.c cub3D_iantar/render_map.c \
-		cub3D_iantar/player_hooks.c \
+		cub3D_iantar/player_hooks.c cub3D_iantar/slow_version.c \
 			./cub3D_aouaziz/parsing/cub3D.c \
 			./cub3D_aouaziz/parsing/parsing_file.c \
 			./cub3D_aouaziz/parsing/textur_lst.c \

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/03 12:40:07 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 10:40:25 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	main(int ac, char *av[])
 	//data->dir = get_dir(data->map);
 	data->mlx = mlx_init(data->map);
 	//data->m_height = cube->m_height;
-	data->m_width = 23;
-	data->m_height = 6;
-	data->mlx_win = mlx_new_window(data->mlx, 50 * data->m_width, 50 * data->m_height, "Cub3D");
+	data->m_width = 12;
+	data->m_height = 10;
+	data->mlx_win = mlx_new_window(data->mlx, GRID_SQUAR * 24, GRID_SQUAR * data->m_height, "Cub3D");
 	render_map(data, pos, dir);
 	player_hooks(data);
 	mlx_loop(data->mlx);

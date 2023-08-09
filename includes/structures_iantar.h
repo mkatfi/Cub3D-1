@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/01 11:15:37 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 16:09:56 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_pos
 	float	y;
 }					t_pos;
 
+typedef struct s_plan
+{
+	float	x;
+	float	y;
+}					t_plan;
+
 typedef struct s_data
 {
 	void	*mlx;
@@ -37,8 +43,11 @@ typedef struct s_data
 	int		line_length;
 	int		m_width;
 	int		m_height;
+	float	k;
+	float	v_angle;
 	t_pos	pos;
-	t_dir	vect;
+	t_dir	dir;
+	t_plan	plan;
 	// float	pos_x;
 	// float	pos_y;
 }					t_data;

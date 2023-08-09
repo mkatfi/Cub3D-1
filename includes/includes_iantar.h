@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:03:41 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/04 10:27:33 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 11:24:29 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	player_hooks(t_data *data);
 int		key_press(int key_code, t_data *data);
 void	player_direction(int x, int y, float angle, t_data *data);
 void	render_map(t_data *data, t_pos pos, t_dir dir);
-void	_dir_(t_data *data, t_pos pos, t_dir dir, float angle, int color);
+void	dir_vect(t_data *data, t_pos pos, t_dir dir, float angle, int color);
+void	plan_vect(t_data *data, t_pos pos, float angle, int color);
+void	slow_version(t_data *data, float distance);
 
 #endif

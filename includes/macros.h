@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/05 13:36:30 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/09 13:06:35 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ESC 53
 # define LEFT_ARR 123
 # define RIGHT_ARR 124
+//colors
 # define RED 0x00FF0000
 # define BLACK 0x00000000
 # define WITE 0x00FFFFFF
@@ -30,9 +31,15 @@
 # define YELLOW 0x00FFFF00
 # define TIFFANY_BLUE 0x00A0E7E5
 # define TEAL 0x0029A0B1
+# define BRWON 0x00FFD898 //ground
+# define CYAN 0x0000FFFF //sky
+# define GRAY 0x00848482 //wall
+
 # define SPEED 5
 # define PLAYER_DIM 5
 # define NEON_GREEN 0x0014E114
+# define GRID_SQUAR 50
+
 //0x0029A0B1
 # define GRID 50
 #endif
