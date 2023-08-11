@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/09 16:03:37 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/11 10:56:26 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 	{
 		data->k = k;
 		draw_dirction(data, pos, dir, dir.angle + k, NEON_GREEN);//add k as a parameter
-		k += 0.01;
+		k += 0.009;
 		printf("x=k*10=%f\n", k * 10);
 	}
 	k = 0;
@@ -76,7 +76,7 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 	{
 		data->k = k * (-1);
 		draw_dirction(data, pos, dir, dir.angle - k, NEON_GREEN);
-		k += 0.01;
+		k += 0.009;
 		//printf("x=k*10=%f\n", (-1) * (k * 10));
 		//PI/5 - k
 	}

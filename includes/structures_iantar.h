@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/09 16:09:56 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/10 10:57:07 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_data
 	int		m_height;
 	float	k;
 	float	v_angle;
+	float	dist;
 	t_pos	pos;
 	t_dir	dir;
 	t_plan	plan;

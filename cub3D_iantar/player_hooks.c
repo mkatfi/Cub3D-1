@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/09 16:09:36 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/10 10:56:46 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_dirction(t_data *data, t_pos pos, t_dir dir, float angle, int color)//
 {
 	float		i;
 
-	(void)dir;
+	//(void)dir;
 	i = 0.1;
 	
 	while (data->map[(int)((pos.y + i * sin(angle)) / GRID_SQUAR)][(int)((pos.x + i * cos(angle)) / GRID_SQUAR)] != '1' && data->map[(int)((pos.y + i * sin(angle) + PI/2) / GRID_SQUAR)][(int)((pos.x + i * cos(angle) + PI/2) / GRID_SQUAR)] != '1')
@@ -97,6 +97,8 @@ void	draw_dirction(t_data *data, t_pos pos, t_dir dir, float angle, int color)//
 		i += 0.1;
 	}
 	data->dir = dir;
+	if (data->dir.angle == angle)
+		data->dist = distance(fabs(pos.x - pos.x + i * cos(angle)), fabs(pos.y - pos.y + i * sin(angle)));
 	data->v_angle = angle;
 	slow_version(data, distance(fabs(pos.x - pos.x + i * cos(angle)), fabs(pos.y - pos.y + i * sin(angle))));
 	//printf("ray_x:%f, ray_y:%f\n",pos.x + i * cos(angle),  pos.y + i * sin(angle));
