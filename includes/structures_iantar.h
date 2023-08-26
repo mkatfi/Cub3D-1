@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures_iantar.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/10 10:57:07 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/26 10:56:39 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,42 @@
 
 typedef struct s_dir
 {
-	float	x;
-	float	y;
-	float	angle;
+	double	x;
+	double	y;
+	double	angle;
 }					t_dir;
 
 typedef struct s_pos
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }					t_pos;
+
+typedef struct s_coor_int
+{
+	int	x;
+	int	y;
+}					cor_int;
 
 typedef struct s_plan
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 }					t_plan;
+
+typedef struct s_dda
+{
+	double	distance;
+	int	side;
+}					t_dda;
+
+typedef struct s_texter
+{
+	char	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		x_or_y;
+}					t_texter; 
 
 typedef struct s_data
 {
@@ -39,18 +59,18 @@ typedef struct s_data
 	char	**map;
 	void	*img;
 	char	*get_adr;
+	t_texter	texter;
 	int		bits_per_pixel;
 	int		line_length;
 	int		m_width;
 	int		m_height;
-	float	k;
-	float	v_angle;
-	float	dist;
+	double	k;
+	double	v_angle;
+	double	dist;
 	t_pos	pos;
 	t_dir	dir;
 	t_plan	plan;
-	// float	pos_x;
-	// float	pos_y;
+	int		input[3];
 }					t_data;
 
 

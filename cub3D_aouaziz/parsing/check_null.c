@@ -37,11 +37,9 @@ void	check_Zero_Surroundings(t_cube3d *cube)
 {
 	int		i;
 	int		j;
-	int		p;
 	char	**map;
 
 	i = 0;
-	p = 0;
 	map = cube->map;
 	while (map[i])
 	{

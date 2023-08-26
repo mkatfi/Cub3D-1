@@ -72,12 +72,10 @@ static int ft_checkerror(char *str)
 
 int	ft_color_resolution(char *str)
 {
-	int		i;
 	size_t	r;
 	char **tab;
 	char *line;
 
-	i = 0;
 	r = 0;
 	line  = ft_strtrim(str," ");
 	if (!str || !ft_checkerror(str))

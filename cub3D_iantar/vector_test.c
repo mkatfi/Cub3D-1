@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 09:35:15 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/01 09:38:17 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/16 10:51:22 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,3 @@
 #include "../includes/structures_iantar.h"
 #include "../includes/macros.h"
 
-void	draw_vect(float x, float y)
-{
-	
-}

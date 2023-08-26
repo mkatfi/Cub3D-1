@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 06:58:32 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 10:09:29 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/15 13:55:09 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_cube3d	*check_File_And_Read_it(char *file)
 
 	cube = malloc(sizeof(t_cube3d));
 	cube->textur = NULL;
-	cube->map = malloc(sizeof(char *) * 5);
+	cube->map = malloc(sizeof(char *) * 10);
 	cube->F = 0;
 	cube->C = 0;
 	cube->i = 0;

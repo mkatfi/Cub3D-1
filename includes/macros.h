@@ -3,26 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/09 13:06:35 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/26 12:48:15 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
-
+/*
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+*/
 # define PI 3.1415926535
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define ESC 53
-# define LEFT_ARR 123
-# define RIGHT_ARR 124
+# define ON_KEYUP 3
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+# define LEFT_ARR 65361
+# define RIGHT_ARR 65363
+# define X_TEX 0
+# define Y_TEX 1
+
 //colors
 # define RED 0x00FF0000
 # define BLACK 0x00000000
@@ -34,12 +48,15 @@
 # define BRWON 0x00FFD898 //ground
 # define CYAN 0x0000FFFF //sky
 # define GRAY 0x00848482 //wall
-
-# define SPEED 5
-# define PLAYER_DIM 5
 # define NEON_GREEN 0x0014E114
-# define GRID_SQUAR 50
 
+# define SPEED 0.1
+# define PLAYER_DIM 5
+
+# define MAPWIDTH 12
+# define MAPHEIGHT 10
+# define SCREEN_HEIGHT 640
+# define SCREEN_WIDTH 768
 //0x0029A0B1
-# define GRID 50
+# define GRID 64
 #endif

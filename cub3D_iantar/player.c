@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:41:32 by iantar            #+#    #+#             */
-/*   Updated: 2023/07/28 09:44:50 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/16 10:50:53 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // void	draw_disk(int x, int y, int r, t_data *data)
 // {
 // 	//int	i, a = 180, j;
-// 	float	i, j;
+// 	double	i, j;
 
 // 	j = 0;
 // 	while (j < r)
@@ -36,7 +36,7 @@
 
 // void	draw_player(int x, int y, int r, t_data *data)
 // {
-// 	float	i, j;
+// 	double	i, j;
 
 // 	j = 0;
 // 	while (j < r)

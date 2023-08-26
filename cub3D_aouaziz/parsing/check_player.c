@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 11:14:33 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 10:35:50 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/21 09:00:08 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void	check_Map_Not_Closed(char **map)
 
 	x = 0;
 	y = ft_skip_new_line(map, 0);
-	check_Map_Line(map, y);
+	//check_Map_Line(map, y);
 	while (map[x])
 		x++;
 	x = x - 1;
 	while (map[x][0] == '\n')
 		x--;
-	check_Map_Line(map, x);
+	//check_Map_Line(map, x);
 	while (x != y)
 	{
 		check_First_Line(ft_strtrim(map[x], " "));

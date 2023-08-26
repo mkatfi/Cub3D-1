@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/11 10:56:26 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/26 15:15:19 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,50 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	//if (x < 0 || y < 0 || x > SCREEN_WIDTH || y > SCREEN_HEIGHT)
+	//	return ;
 	dst = data->get_adr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
-void	render_map(t_data *data, t_pos pos, t_dir dir)
+void	line(t_data *data, double x, double y, double angle, double len)
+{
+	double r;
+
+	r = 0;
+	while (r < len)
+	{
+		my_mlx_pixel_put(data, x + r * cos(angle), y + r * sin(angle), RED);
+		r += 0.1;
+	}
+}
+void	lin(t_data *data, double x, double y, double angle, double len)
+{
+	double r;
+
+	r = 0;
+	while (r < len)
+	{
+		my_mlx_pixel_put(data, x + r * cos(angle), y + r * sin(angle), BLUE);
+		r += 0.1;
+	}
+}
+unsigned int rgb_color(int r, int g, int b, int density)
+{
+	//printf("density:%d\n", density);
+	r -= density;
+	g -= density;
+	b -= density;
+	if (r < 0)
+		r = 0;
+	if (g < 0)
+		g = 0;
+	if (b < 0)
+		b = 0;
+	return (r << 16 | g << 8 | b);
+}
+
+void	render_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -35,26 +74,21 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 	j = 0;
 	if (!check)
 	{
-		data->img = mlx_new_image(data->mlx, 24 * GRID_SQUAR, data->m_height * GRID_SQUAR);//data->m_width = 24
+		data->img = mlx_new_image(data->mlx, SCREEN_WIDTH * 2, SCREEN_HEIGHT);
 		data->get_adr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &endian);
 	}
 	check = 1;
-	while (i < data->m_height * GRID_SQUAR)
+	while (i <  10 * GRID)
 	{
 		j = 0;
-		while (j < data->m_width * GRID_SQUAR)
+		while (j < 12 * GRID)
 		{
-			if (data->map[i / GRID_SQUAR][j / GRID_SQUAR] == '1')
-			{
-				if (!(i % GRID_SQUAR) || !(j % GRID_SQUAR))
-					my_mlx_pixel_put(data, j, i, WITE);
-				else
-					my_mlx_pixel_put(data, j, i, BLACK);
-			}
+			if (data->map[i / GRID][j / GRID] == '1')
+				my_mlx_pixel_put(data, j, i, rgb_color(30, 255, 255, 0));
 			else
 			{
-				if (!(i % GRID_SQUAR) || !(j % GRID_SQUAR))
-					my_mlx_pixel_put(data, j, i, BLACK);
+				if (!(i % GRID) || !(j % GRID))
+					my_mlx_pixel_put(data, j, i, rgb_color(30, 255, 255, 0));
 				else
 					my_mlx_pixel_put(data, j, i, WITE);
 			}
@@ -62,25 +96,6 @@ void	render_map(t_data *data, t_pos pos, t_dir dir)
 		}
 		i++;
 	}
-	draw_player(pos, PLAYER_DIM, data, RED);
-	float	k = 0;
-	while (k <= PI / 5)
-	{
-		data->k = k;
-		draw_dirction(data, pos, dir, dir.angle + k, NEON_GREEN);//add k as a parameter
-		k += 0.009;
-		printf("x=k*10=%f\n", k * 10);
-	}
-	k = 0;
-	while (k <= PI / 5)
-	{
-		data->k = k * (-1);
-		draw_dirction(data, pos, dir, dir.angle - k, NEON_GREEN);
-		k += 0.009;
-		//printf("x=k*10=%f\n", (-1) * (k * 10));
-		//PI/5 - k
-	}
-	dir_vect(data, pos, dir, dir.angle, RED);
-	plan_vect(data, pos, dir.angle, BLUE);
+	//set_textuers(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 08:31:14 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:50:30 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/08/15 14:58:50 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_cub_strdup(const char *s1,int len)
 	char	*ptr;
 
 	i = 0;
-	ptr = ft_calloc(len + 1, sizeof(char));
+	ptr = ft_calloc((len + 1) * 400, sizeof(char));
 	if (!ptr)
 		return (0);
 	while (i < ft_strlen(s1))
@@ -55,5 +55,6 @@ char	*ft_cub_strdup(const char *s1,int len)
 		ptr[i] = ' ';
 		i++;
 	}
+	ptr[i] = '\0';
 	return (ptr);
 }

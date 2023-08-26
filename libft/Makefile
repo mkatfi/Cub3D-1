@@ -2,7 +2,7 @@ NAME = libft.a
 
 CFLAGS = -Wall -Wextra -Werror
 
-CC = cc
+CC = clang
 
 SOURCES = 			./srcs/ft_isalpha.c \
 					./srcs/ft_isdigit.c \

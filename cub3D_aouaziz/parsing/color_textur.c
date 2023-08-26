@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_textur.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 15:07:04 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:54:06 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/08/21 08:56:46 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_cube3d	*get_Color(t_cube3d *cube, char *line)
 		cube->C = ft_color_resolution(str[1]);
 		i++;
 	}
-	if (i > 2)
-		ft_print_error("Invalid Color Parameter\n");
+	//if (i > 2)
+	//	ft_print_error("Invalid Color Parameter\n");
 	free_double_str(str);
 	return (cube);
 }
