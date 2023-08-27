@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 15:16:56 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 10:56:05 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,6 @@ int	game_loop(t_data *data)
 	}
 	render_map(data);
 	dda_version(data);
-	printf("data->gat_adr:%p\n ", data->get_adr);
-	printf("data->gat_adr:%p\n ", data->get_adr);
 	return (0);
 }
 

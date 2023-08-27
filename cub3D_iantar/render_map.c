@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 15:15:19 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 10:57:24 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	//if (x < 0 || y < 0 || x > SCREEN_WIDTH || y > SCREEN_HEIGHT)
-	//	return ;
+	if (x < 0 || y < 0 || x > SCREEN_WIDTH * 2 || y > SCREEN_HEIGHT)
+		return ;
 	dst = data->get_adr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
@@ -96,6 +96,5 @@ void	render_map(t_data *data)
 		}
 		i++;
 	}
-	//set_textuers(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }

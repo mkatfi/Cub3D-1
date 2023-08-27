@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 15:05:15 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 10:59:27 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,23 +103,17 @@ void	dda_version(t_data *data)
 		dda = dda_distance(data, ray_dir);
 		if (dda.side == X_TEX)
 		{
-			tex = (int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID);
+			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));
 			//printf("dist_x:%f\n", ((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID);
 		}
 		if (dda.side == Y_TEX)
 		{
-			tex = (int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID);
+			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
 			//printf("dist_y:%f\n", ((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID);
 		}
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
-		//printf("ray_dir.x * dda:%d, ray_dir.y * dda:%d\n", (int)(ray_dir.x * dda + data->pos.x) % GRID, (int)(ray_dir.y * dda + data->pos.y) % GRID);
-		//printf("dda.side:%d\n", dda.side);
-		//printf("pos.x:%f, pos.y:%f\n", data->pos.x, data->pos.y);
 		line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
-		//wallx = get_wallx();//ray_dir.x * dda + data->pos.x;
-		//set_textuers(data, ray_dir);
 		fake_3d(data, dda.distance, x + SCREEN_WIDTH, tex);
-		//printf("wallx: %d\n", wallx);
 		x++;
  	}
 }

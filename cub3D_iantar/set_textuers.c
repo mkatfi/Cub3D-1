@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:07:46 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 13:37:57 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 10:54:30 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ unsigned int	get_pixel_color(t_data *data, int x, int y)
 
 	//printf("in get_:%p\n", data->texter.addr);
 	//printf("wallx:%d\n", x);
+	if (x < 0 || y < 0 || x > 64 || y > 64)
+	{
+		printf("x=%d, y = %d\n", x, y);
+		return (0);
+	}
 	dst = data->texter.addr + (y * data->texter.size_line + x * (data->texter.bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
