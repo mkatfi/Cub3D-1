@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 16:56:03 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:10:01 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_data	*inisilize(char *av)
 	data->m_width = 12;
 	data->m_height = 10;
 	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
-	data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/StoneUWL.xpm", &data->ea.width, &data->ea.height);
-    data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/GrasswallL.xpm", &data->no.width, &data->no.height);
-    data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/SnowbrickL.xpm", &data->so.width, &data->so.height);
-    data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/MultibrickL.xpm", &data->we.width, &data->we.height);
+	data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/ea.xpm", &data->ea.width, &data->ea.height);
+    data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/iantar.xpm", &data->no.width, &data->no.height);
+    data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/alaouite.xpm", &data->so.width, &data->so.height);
+    data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/Almoravides.xpm", &data->we.width, &data->we.height);
 	if (!data->ea.img || !data->no.img || !data->so.img || !data->we.img)
 		error_mesg("invalid texter\n");
 	data->no.addr =  mlx_get_data_addr(data->no.img, &data->no.bits_per_pixel, &data->no.size_line, &data->no.endian);
