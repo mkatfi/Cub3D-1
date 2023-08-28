@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 10:56:05 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 13:39:31 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,14 @@ int	game_loop(t_data *data)
 	if (data->input[2] == RIGHT_ARR)
 	{
 		c = 1;
-		rotate(&data->dir.x, &data->dir.y, 0.05 * c);
-		rotate(&data->plan.x, &data->plan.y, 0.05 * c);
+		rotate(&data->dir.x, &data->dir.y, 0.03 * c);
+		rotate(&data->plan.x, &data->plan.y, 0.03 * c);
 	}
 	if (data->input[2] == LEFT_ARR)
 	{
 		c = -1;
-		rotate(&data->dir.x, &data->dir.y, 0.05 * c);
-		rotate(&data->plan.x, &data->plan.y, 0.05 * c);
+		rotate(&data->dir.x, &data->dir.y, 0.03 * c);
+		rotate(&data->plan.x, &data->plan.y, 0.03 * c);
 	}
 	render_map(data);
 	dda_version(data);

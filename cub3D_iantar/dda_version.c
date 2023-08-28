@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 10:59:27 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 09:23:38 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,23 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		}
 	}
 	if (dda.side)
+	{
 		dda.distance = dist.x - dx;
+		if (ray_dir.x > 0)
+			dda.side = NO;
+		else
+			dda.side = WE;
+	}
 	else
+	{
 		dda.distance = dist.y - dy;
+		if (ray_dir.y > 0)
+			dda.side = EA;
+		else
+			dda.side = SO;
+	}
 	return (dda);
-	//return (dist.y - dy);
 }
-
-// int	get_wallx()
-// {
-		
-// }
 
 void	dda_version(t_data *data)
 {
@@ -96,24 +102,22 @@ void	dda_version(t_data *data)
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		//if side = 0 -> ray hit the x side, else side = 
 		camera_x = (2 * x) / SCREEN_WIDTH - 1;//x-coordinate in camera space
 		ray_dir.x = data->dir.x + camera_x * data->plan.x;
 		ray_dir.y = data->dir.y + camera_x * data->plan.y;
 		dda = dda_distance(data, ray_dir);
-		if (dda.side == X_TEX)
+		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
 		{
 			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));
-			//printf("dist_x:%f\n", ((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID);
 		}
-		if (dda.side == Y_TEX)
+		else //(dda.side == EA || dda.side == SO)
 		{
 			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
-			//printf("dist_y:%f\n", ((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID);
 		}
+		
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
-		line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
-		fake_3d(data, dda.distance, x + SCREEN_WIDTH, tex);
+		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
+		fake_3d(data, dda, x, tex);
 		x++;
  	}
 }

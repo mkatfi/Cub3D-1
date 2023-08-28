@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:53:05 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 11:06:19 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 09:39:44 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,28 @@
 
 //}
 
-void    fake_3d(t_data *data, double dist, int x, int tex)
+unsigned int modify_clor(unsigned int color, int density)
+{
+    unsigned int r;
+    unsigned int g;
+    unsigned int b;
+
+    r = (color >> 16);
+    g = (color >> 8);
+    b = color;
+    r -= density;
+	g -= density;
+	b -= density;
+    if (r < 0)
+        r = 0;
+    if (g < 0)
+        g = 0;
+    if (b < 0)
+        b = 0;
+    return (r << 16 | g << 8 | b);
+} 
+
+void    fake_3d(t_data *data, t_dda dda, int x, int tex)
 {
     double line_h;
     int end;
@@ -31,19 +52,19 @@ void    fake_3d(t_data *data, double dist, int x, int tex)
     static  int check;
 
     
-    int height;
-    //(void)tex;
-	int endian;
-	int	width;
+   
     if (!check)
     {
-        data->texter.addr = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/cub3d_team/textures/iantar.xpm", &width, &height);
-       // data->texter.addr = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/cub3d_team/textures/moroccanflag.xpm", &width, &height);
-        //data->texter.addr = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/cub3d_team/textures/almohad-_1_.xpm", &width, &height);
-
-	    if (!data->texter.addr)
+        data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/ea.xpm", &data->ea.width, &data->ea.height);
+        data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/no.xpm", &data->no.width, &data->no.height);
+        data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/alaouite.xpm", &data->so.width, &data->so.height);
+        data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/Almoravides.xpm", &data->we.width, &data->we.height);
+	    if (!data->ea.img || !data->no.img || !data->so.img || !data->we.img)
 		    error_mesg("invalid texter\n");
-	    data->texter.addr =  mlx_get_data_addr(data->texter.addr, &data->texter.bits_per_pixel, &data->texter.size_line, &endian);
+	    data->no.addr =  mlx_get_data_addr(data->no.img, &data->no.bits_per_pixel, &data->no.size_line, &data->no.endian);
+	    data->so.addr =  mlx_get_data_addr(data->so.img, &data->so.bits_per_pixel, &data->so.size_line, &data->so.endian);
+	    data->we.addr =  mlx_get_data_addr(data->we.img, &data->we.bits_per_pixel, &data->we.size_line, &data->we.endian);
+	    data->ea.addr =  mlx_get_data_addr(data->ea.img, &data->ea.bits_per_pixel, &data->ea.size_line, &data->ea.endian);
         check++;
     }
     //printf("dddaatta:%p;\n", data->texter.addr);
@@ -59,12 +80,13 @@ void    fake_3d(t_data *data, double dist, int x, int tex)
         y1++;
     }
     
-    //if (dist < 1)
-      //  dist = 1;//what the hwll is that
-    line_h = SCREEN_HEIGHT / dist;
+    //if (dda.distance < 1)
+      //  dda.distance = 1;//what the hwll is that
+    line_h = SCREEN_HEIGHT / dda.distance;
     y2 = SCREEN_HEIGHT / 2 - line_h / 2;
     end = SCREEN_HEIGHT / 2 + line_h / 2;
     double tmp = 0;
+    data->dda = dda;
    // int bnb = line_h / GRID;
     while (y2 < end)
     {
@@ -75,3 +97,4 @@ void    fake_3d(t_data *data, double dist, int x, int tex)
         tmp++;
     }
 }
+

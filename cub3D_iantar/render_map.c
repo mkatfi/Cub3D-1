@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 10:57:24 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 13:05:56 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,12 @@ void	render_map(t_data *data)
 	j = 0;
 	if (!check)
 	{
-		data->img = mlx_new_image(data->mlx, SCREEN_WIDTH * 2, SCREEN_HEIGHT);
+		data->img = mlx_new_image(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 		data->get_adr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &endian);
 	}
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	check = 1;
+	/*
 	while (i <  10 * GRID)
 	{
 		j = 0;
@@ -97,4 +99,5 @@ void	render_map(t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	*/
 }

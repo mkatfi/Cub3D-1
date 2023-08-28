@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 10:56:39 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 09:05:59 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,27 @@ typedef struct s_dda
 typedef struct s_texter
 {
 	char	*addr;
+	void	*img;
 	int		bits_per_pixel;
 	int		size_line;
-	int		x_or_y;
+	int		height;
+	int		endian;
+	int		width;
+	
 }					t_texter; 
 
 typedef struct s_data
 {
+	t_dda	dda;
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
 	void	*img;
 	char	*get_adr;
-	t_texter	texter;
+	t_texter	no;
+	t_texter	so;
+	t_texter	we;
+	t_texter	ea;
 	int		bits_per_pixel;
 	int		line_length;
 	int		m_width;
@@ -72,6 +80,5 @@ typedef struct s_data
 	t_plan	plan;
 	int		input[3];
 }					t_data;
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 15:15:31 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 13:01:53 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,8 @@ int	main(int ac, char *av[])
 	data->mlx = mlx_init(data->map);
 	data->m_width = 12;
 	data->m_height = 10;
-	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH * 2, SCREEN_HEIGHT, "Cub3D");
-	//data->get_adr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	printf("data:%p,  \n", data);
-	printf("data->gat_adr:%p\n ", data->get_adr);
+	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	render_map(data);
-	//set_textuers(data);
  	player_hooks(data);
 	mlx_loop(data->mlx);
 	return (EXIT_SUCCESS);

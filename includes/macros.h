@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/26 12:48:15 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/27 13:50:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ enum {
 # define X_TEX 0
 # define Y_TEX 1
 
+//utils
+# define NO 11
+# define SO 112
+# define EA 13
+# define WE 14
+
+
 //colors
 # define RED 0x00FF0000
 # define BLACK 0x00000000
@@ -50,13 +57,13 @@ enum {
 # define GRAY 0x00848482 //wall
 # define NEON_GREEN 0x0014E114
 
-# define SPEED 0.1
+# define SPEED 0.05
 # define PLAYER_DIM 5
 
 # define MAPWIDTH 12
 # define MAPHEIGHT 10
-# define SCREEN_HEIGHT 640
-# define SCREEN_WIDTH 768
+# define SCREEN_HEIGHT 900
+# define SCREEN_WIDTH 1500
 //0x0029A0B1
 # define GRID 64
 #endif
