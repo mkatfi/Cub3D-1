@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 13:39:31 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 15:44:36 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,11 @@ int	close_win(void)
 int	key_up(int key_code, t_data *data)
 {
 	if (key_code == W || key_code == S)
-	{
 		data->input[0] = -1;
-	}
 	if (key_code == D || key_code == A)
-	{
 		data->input[1] = -1;
-	}
 	if (key_code == RIGHT_ARR || key_code == LEFT_ARR)
-	{
 		data->input[2] = -1;
-	}
 	return 0;
 }	
 
@@ -68,9 +62,6 @@ int	hit_wall(t_data *data, int key)
 	}
 	else if (key == A)
 	{
-		//data->pos.x += data->dir.y * SPEED;
-		//data->pos.y += (-1) * data->dir.x * SPEED;
-		
 		check.x =  data->pos.x + data->dir.y * SPEED;
 		check.y = data->pos.y + (-1) * data->dir.x * SPEED;
 	}
@@ -79,7 +70,7 @@ int	hit_wall(t_data *data, int key)
 		check.x =  data->pos.x + (-1) * data->dir.y * SPEED;
 		check.y = data->pos.y + data->dir.x * SPEED;
 	}
-	while (i < 2 * PI)
+	while (i < 2 * PI)//to not hit the wall
 	{
 		if (data->map[(int)(check.y + 0.05 * sin(i))][(int)(check.x + 0.05 * cos(i))] == '1')
 			return (1);
@@ -93,17 +84,11 @@ int	key_press(int key_code, t_data *data)
 	if (key_code == ESC)
 		close_win();
 	if (key_code == W || key_code == S)
-	{
 		data->input[0] = key_code;
-	}
 	if (key_code == D || key_code == A)
-	{
 		data->input[1] = key_code;
-	}
 	if (key_code == RIGHT_ARR || key_code == LEFT_ARR)
-	{
 		data->input[2] = key_code;
-	}
 	return 0;
 }
 
@@ -150,10 +135,8 @@ int	game_loop(t_data *data)
 
 void	player_hooks(t_data *data)
 {
-	//printf("mlx->map:%p\n", data);
 	mlx_hook(data->mlx_win, ON_DESTROY, 1L << 0, close_win, data);
 	mlx_hook(data->mlx_win, ON_KEYDOWN, 1L << 0 , key_press, data);
 	mlx_hook(data->mlx_win, ON_KEYUP, 1L << 1, key_up, data);
 	mlx_loop_hook(data->mlx, game_loop, data);
-	mlx_loop(data->mlx);
 }

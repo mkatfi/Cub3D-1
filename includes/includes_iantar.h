@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:03:41 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 14:10:52 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:00:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ unsigned int	    rgb_color(int r, int g, int b, int density);
 void    fake_3d(t_data *data, t_dda dda, int x, int tex);
 void	set_textuers(t_data *data);
 void	error_mesg(char *msg);
-unsigned int	get_pixel_color(t_data *data, int x, int y);
+unsigned int	get_pixel_color(t_data *data, int x, double y);
 
 #endif

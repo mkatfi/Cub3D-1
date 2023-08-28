@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:07:46 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 09:10:21 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 16:28:43 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,31 @@
 #include "../includes/structures_aouaziz.h"
 #include "../includes/macros.h"
 
-unsigned int	get_pixel_color(t_data *data, int x, int y)
+unsigned int	get_pixel_color(t_data *data, int x, double y)
 {
 	char	*dst;
 
 	if (x < 0 || y < 0 || x > 64 || y > 64)
 	{
-		printf("x=%d, y = %d\n", x, y);
+		
 		return (0);
 	}
 	if (data->dda.side == NO)
-		dst = data->no.addr + (y * data->no.size_line + x * (data->no.bits_per_pixel / 8));
+	{
+		dst = data->no.addr + ((int)(y * data->no.height) * data->no.size_line + (x * (data->no.width / GRID)) * (data->no.bits_per_pixel / 8));
+	}
 	else if (data->dda.side == WE)
-		dst = data->we.addr + (y * data->we.size_line + x * (data->we.bits_per_pixel / 8));
+	{
+		dst = data->we.addr + ((int)(y * data->we.height) * data->we.size_line + (x * (data->we.width / GRID)) * (data->we.bits_per_pixel / 8));
+	}
 	else if (data->dda.side == SO)
-		dst =  data->so.addr + (y * data->so.size_line + x * (data->so.bits_per_pixel / 8));
+	{
+		dst =  data->so.addr + ((int)(y * data->so.height) * data->so.size_line + (x * (data->so.width / GRID)) * (data->so.bits_per_pixel / 8));
+	}
 	else
-		dst = data->ea.addr + (y * data->ea.size_line + x * (data->ea.bits_per_pixel / 8));
+	{
+		dst = data->ea.addr + ((int)(y * data->ea.height) * data->ea.size_line + (x * (data->ea.width / GRID)) * (data->ea.bits_per_pixel / 8));
+	}
 	return (*(unsigned int *)dst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 09:23:38 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/28 15:48:12 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ void	dda_version(t_data *data)
 		dda = dda_distance(data, ray_dir);
 		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
 		{
-			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));
+			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));//get the pos of the ray when it hit the wall
 		}
-		else //(dda.side == EA || dda.side == SO)
+		else
 		{
 			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
 		}
@@ -121,3 +121,9 @@ void	dda_version(t_data *data)
 		x++;
  	}
 }
+//dynamic texters
+//gliss
+//curser
+//animation
+//doors
+//
