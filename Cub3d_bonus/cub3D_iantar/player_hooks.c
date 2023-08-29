@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 15:44:36 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/29 19:58:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	rotate(double *x, double *y, double angle)
 {
 	double tmp;
 
+	printf("x:%p, y:%p\n", x, y);
 	tmp = *x;
 	*x = (*x) * cos(angle) - (*y) * sin(angle);
 	*y = tmp * sin(angle) + (*y) * cos(angle);
@@ -132,11 +133,30 @@ int	game_loop(t_data *data)
 	dda_version(data);
 	return (0);
 }
+int	mouse(int key_code, int y, t_data *data)
+{
+	static int save;
+
+	if (key_code > save)
+	{
+		rotate(&data->dir.x, &data->dir.y, 0.03);
+		rotate(&data->plan.x, &data->plan.y, 0.03);
+	}
+	else if (key_code < save)
+	{
+		rotate(&data->dir.x, &data->dir.y, 0.03 * (-1));
+		rotate(&data->plan.x, &data->plan.y, 0.03 * (-1));
+	}
+	save = key_code;
+	return (0);
+	(void)y;
+}
 
 void	player_hooks(t_data *data)
 {
 	mlx_hook(data->mlx_win, ON_DESTROY, 1L << 0, close_win, data);
 	mlx_hook(data->mlx_win, ON_KEYDOWN, 1L << 0 , key_press, data);
 	mlx_hook(data->mlx_win, ON_KEYUP, 1L << 1, key_up, data);
+	mlx_hook(data->mlx_win, MOUSEMOVE, 1L << 6, mouse, data);
 	mlx_loop_hook(data->mlx, game_loop, data);
 }

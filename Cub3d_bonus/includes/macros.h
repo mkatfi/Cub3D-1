@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 13:50:48 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/29 17:56:10 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ enum {
 # define RIGHT_ARR 65363
 # define X_TEX 0
 # define Y_TEX 1
-
+# define MOUSEMOVE  6
 //utils
 # define NO 11
 # define SO 112
@@ -66,4 +66,5 @@ enum {
 # define SCREEN_WIDTH 1500
 //0x0029A0B1
 # define GRID 64
+# define MINI_GRID 10
 #endif

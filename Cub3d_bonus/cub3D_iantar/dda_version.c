@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 15:48:12 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/29 20:10:09 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,96 @@ void	dda_version(t_data *data)
 		fake_3d(data, dda, x, tex);
 		x++;
  	}
+	mini_map(data);
 }
-//dynamic texters
+
+void	draw_square(t_data *data, int i, int j, int color)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < MINI_GRID)
+	{
+		x = 0;
+		while (x < MINI_GRID)
+		{
+			my_mlx_pixel_put(data, i * MINI_GRID + x, j * MINI_GRID + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	mini_map(t_data *data)
+{
+	cor_int	start;
+	cor_int	end;
+	int	i;
+	int	j;
+	int	x, y;
+
+	start.x = (int)(data->pos.x) - 20;
+	start.y = (int)(data->pos.y) - 12;
+	end.x = (int)(data->pos.x) + 20;
+	end.y = (int)(data->pos.y) + 12;
+	if (start.x < 0)
+		start.x = 0;
+	if (start.y < 0)
+		start.y = 0;
+	if (end.x > 41)
+		end.x = 41;
+	if (end.y > 15)
+		end.y = 15;
+	j = start.y;
+	y = 0;
+	while (j < end.y)
+	{
+		i = start.x;
+		x = 0;
+		while (i < end.x)
+		{
+			//printf("i:%d\n", i);
+			if (data->map[j][i] == '1')
+				draw_square(data, x, y, GRAY);
+			else
+				draw_square(data, x, y, CYAN);
+			i++;
+			x++;
+		}
+		y++;
+		j++;
+	}
+	t_pos	pos;
+	pos.x = data->pos.x;
+	pos.y = data->pos.y;
+	if (pos.x > 20)
+		pos.x = 20;
+	if (pos.y > 12)
+		pos.y = 12;
+	draw_player(data, pos, RED);
+}
+
+void	draw_player(t_data *data, t_pos pos, int color)
+{
+	double	angle;
+	double	r;
+
+	r = 0;
+	angle = 0;
+	while (angle < 2 * PI)
+	{
+		while (r < PLAYER_DIM)
+		{
+			my_mlx_pixel_put(data, pos.x * MINI_GRID + r * cos(angle), pos.y * MINI_GRID + r * sin(angle), color);
+			r += 1;  
+		}
+		angle += 0.1;
+	}
+}
+//dynamic texters , done but need to check
 //gliss
 //curser
 //animation
 //doors
-//
+//mini map

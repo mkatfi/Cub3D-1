@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 16:10:01 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/29 10:40:28 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,26 @@ t_data	*inisilize(char *av)
 	data = malloc(sizeof(t_data));
 	cube = check_File_And_Read_it(av);
 	data->map = cube->map;
-	data->dir.y = 0; //N
-    data->dir.x = 1;
+	/*
+	if (data->player == NO)
+	else if (data->player == WE)
+	else if (data->player == EA)
+	else if (data->player == SO)
+	*/
+	data->dir.y = -1; //N
+    data->dir.x = 0;
+	data->plan.x = 0.66;
+	data->plan.y = 0;//tan(33)
 	data->pos.x = 2;
 	data->pos.y = 2;
-	data->plan.x = 0;
-	data->plan.y = 0.66;//tan(33)
 	data->mlx = mlx_init(data->map);
 	data->m_width = 12;
 	data->m_height = 10;
 	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
-	data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/ea.xpm", &data->ea.width, &data->ea.height);
-    data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/iantar.xpm", &data->no.width, &data->no.height);
-    data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/alaouite.xpm", &data->so.width, &data->so.height);
-    data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/Almoravides.xpm", &data->we.width, &data->we.height);
+	data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/StoneUWL.xpm", &data->ea.width, &data->ea.height);
+    data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/GrasswallL.xpm", &data->no.width, &data->no.height);
+    data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/SnowbrickL.xpm", &data->so.width, &data->so.height);
+    data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/MultibrickL.xpm", &data->we.width, &data->we.height);
 	if (!data->ea.img || !data->no.img || !data->so.img || !data->we.img)
 		error_mesg("invalid texter\n");
 	data->no.addr =  mlx_get_data_addr(data->no.img, &data->no.bits_per_pixel, &data->no.size_line, &data->no.endian);

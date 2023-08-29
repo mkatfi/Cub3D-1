@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aouaziz <aouaziz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 07:19:58 by aouaziz           #+#    #+#             */
-/*   Updated: 2023/07/27 15:53:39 by aouaziz          ###   ########.fr       */
+/*   Updated: 2023/08/29 11:27:55 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	ft_check_char(char c)
 {
-	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	if (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'D')
 		return (0);
 	return (1);
 }
@@ -38,7 +38,7 @@ t_cube3d	*check_Map_Lines(t_cube3d *cube)
 		{
 			if (map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '0' ||
 				map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W' ||
-				map[i][j] == 'E' || map[i][j] == '\n')
+				map[i][j] == 'E' || map[i][j] == '\n' || map[i][j] == 'D')
 				j++;
 			else
 				ft_print_error("Invalid Map - Unknown Character in Map\n");
