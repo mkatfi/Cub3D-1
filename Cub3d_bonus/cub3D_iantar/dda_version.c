@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/29 20:10:09 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/29 20:14:34 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,11 +199,8 @@ void	draw_player(t_data *data, t_pos pos, int color)
 	angle = 0;
 	while (angle < 2 * PI)
 	{
-		while (r < PLAYER_DIM)
-		{
-			my_mlx_pixel_put(data, pos.x * MINI_GRID + r * cos(angle), pos.y * MINI_GRID + r * sin(angle), color);
-			r += 1;  
-		}
+		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, 5);
+		//my_mlx_pixel_put(data, pos.x * MINI_GRID + r * cos(angle), pos.y * MINI_GRID + r * sin(angle), color);
 		angle += 0.1;
 	}
 }
