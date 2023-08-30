@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/29 19:58:48 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 11:23:55 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	rotate(double *x, double *y, double angle)
 {
 	double tmp;
 
-	printf("x:%p, y:%p\n", x, y);
 	tmp = *x;
 	*x = (*x) * cos(angle) - (*y) * sin(angle);
 	*y = tmp * sin(angle) + (*y) * cos(angle);
@@ -73,7 +72,7 @@ int	hit_wall(t_data *data, int key)
 	}
 	while (i < 2 * PI)//to not hit the wall
 	{
-		if (data->map[(int)(check.y + 0.05 * sin(i))][(int)(check.x + 0.05 * cos(i))] == '1')
+		if (data->map[(int)(check.y + 0.2 * sin(i))][(int)(check.x + 0.2 * cos(i))] == '1')
 			return (1);
 		i += PI / 3;
 	}
@@ -131,6 +130,7 @@ int	game_loop(t_data *data)
 	}
 	render_map(data);
 	dda_version(data);
+	animation(data);
 	return (0);
 }
 int	mouse(int key_code, int y, t_data *data)

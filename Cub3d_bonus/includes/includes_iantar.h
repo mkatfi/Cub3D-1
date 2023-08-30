@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:03:41 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/29 16:32:23 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 10:50:42 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ unsigned int	get_pixel_color(t_data *data, int x, double y);
 void	mini_map(t_data *data);
 void	draw_square(t_data *data, int i, int j, int color);
 void	draw_player(t_data *data, t_pos pos, int color);
+void    animation(t_data *data);
 
 #endif

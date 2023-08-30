@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/29 20:14:34 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 11:44:57 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,9 @@ void	mini_map(t_data *data)
 		start.x = 0;
 	if (start.y < 0)
 		start.y = 0;
-	if (end.x > 41)
+	if (end.x > 41)//41 is the width of yhe map , change it to data->m_witdh 
 		end.x = 41;
-	if (end.y > 15)
+	if (end.y > 15)// 15 if the hight of yhe map chaange it to data->m_hight
 		end.y = 15;
 	j = start.y;
 	y = 0;
@@ -184,7 +184,7 @@ void	mini_map(t_data *data)
 	pos.x = data->pos.x;
 	pos.y = data->pos.y;
 	if (pos.x > 20)
-		pos.x = 20;
+		pos.x = 21;
 	if (pos.y > 12)
 		pos.y = 12;
 	draw_player(data, pos, RED);
@@ -193,13 +193,14 @@ void	mini_map(t_data *data)
 void	draw_player(t_data *data, t_pos pos, int color)
 {
 	double	angle;
-	double	r;
+	//double	r;
 
-	r = 0;
+	//r = 0;
 	angle = 0;
+	(void)color;
 	while (angle < 2 * PI)
 	{
-		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, 5);
+		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, PLAYER_DIM / 4);
 		//my_mlx_pixel_put(data, pos.x * MINI_GRID + r * cos(angle), pos.y * MINI_GRID + r * sin(angle), color);
 		angle += 0.1;
 	}

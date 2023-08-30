@@ -11,7 +11,7 @@ FLAGS = -Wall -Wextra -Werror  -fsanitize=address -g3
 MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 SRC = main.c cub3D_iantar/utils1.c cub3D_iantar/render_map.c \
-		cub3D_iantar/player_hooks.c cub3D_iantar/dda_version.c \
+		cub3D_iantar/player_hooks.c cub3D_iantar/dda_version.c cub3D_iantar/animation.c \
 		cub3D_iantar/fake_3d.c cub3D_iantar/set_textuers.c \
 			./cub3D_aouaziz/parsing/cub3D.c \
 			./cub3D_aouaziz/parsing/parsing_file.c \
