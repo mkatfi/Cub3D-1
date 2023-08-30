@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:07:46 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 16:33:05 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 13:46:07 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ unsigned int	get_pixel_color(t_data *data, int x, double y)
 
 	if (x < 0 || y < 0 || x > 64 || y > 64)
 	{
-		
 		return (0);
 	}
-	if (data->dda.side == NO)
+	if (data->dda.door)
+	{
+		dst = data->door.addr + ((int)(y * data->door.height) * data->door.size_line + (x * (data->door.width / GRID)) * (data->door.bits_per_pixel / 8));
+	}
+	else if (data->dda.side == NO)
 	{
 		dst = data->no.addr + ((int)(y * data->no.height) * data->no.size_line + (x * (data->no.width / GRID)) * (data->no.bits_per_pixel / 8));
 	}

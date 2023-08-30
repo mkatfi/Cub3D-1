@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:53:05 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 16:29:05 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 13:36:33 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void    fake_3d(t_data *data, t_dda dda, int x, int tex)
 	data->dda = dda;
 	while (y2 < end)
 	{
+		//if (data->map[data->pos.x + (dda.distance * dir.x)])
 		color = get_pixel_color(data, tex, (tmp / line_h));
 		my_mlx_pixel_put(data, x, y2, color);
 		y2++;

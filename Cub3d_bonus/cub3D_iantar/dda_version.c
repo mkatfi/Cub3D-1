@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 11:44:57 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 13:48:20 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,14 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		dist.y =  ((ray_map.y + 1) - data->pos.y) * dy; 
 		step.y = 1;
 	}
-
+	dda.door = 0;
 	while (data->map[ray_map.y][ray_map.x] != '1')//here you must to make sure that x and y are in thier place
 	{
+		if (data->map[ray_map.y][ray_map.x] == 'D')
+		{
+			dda.door = 1;
+			break;
+		}
 		if (dist.x < dist.y)
 		{
 			dist.x += dx;
@@ -91,6 +96,11 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	return (dda);
 }
 
+// void	door()
+// {
+
+// }
+
 void	dda_version(t_data *data)
 {
 	double		x;
@@ -114,7 +124,6 @@ void	dda_version(t_data *data)
 		{
 			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
 		}
-		
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
 		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
 		fake_3d(data, dda, x, tex);
@@ -172,7 +181,9 @@ void	mini_map(t_data *data)
 			//printf("i:%d\n", i);
 			if (data->map[j][i] == '1')
 				draw_square(data, x, y, GRAY);
-			else
+			else if (data->map[j][i] == 'D')
+				draw_square(data, x, y, BRWON);
+			else	
 				draw_square(data, x, y, CYAN);
 			i++;
 			x++;
@@ -193,15 +204,12 @@ void	mini_map(t_data *data)
 void	draw_player(t_data *data, t_pos pos, int color)
 {
 	double	angle;
-	//double	r;
 
-	//r = 0;
 	angle = 0;
 	(void)color;
 	while (angle < 2 * PI)
 	{
 		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, PLAYER_DIM / 4);
-		//my_mlx_pixel_put(data, pos.x * MINI_GRID + r * cos(angle), pos.y * MINI_GRID + r * sin(angle), color);
 		angle += 0.1;
 	}
 }

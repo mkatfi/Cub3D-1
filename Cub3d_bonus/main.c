@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 11:17:33 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 13:45:26 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ t_data	*inisilize(char *av)
     data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/GrasswallL.xpm", &data->no.width, &data->no.height);
     data->so.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/SnowbrickL.xpm", &data->so.width, &data->so.height);
     data->we.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/MultibrickL.xpm", &data->we.width, &data->we.height);
-	if (!data->ea.img || !data->no.img || !data->so.img || !data->we.img)
+    data->door.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/Cub3d_bonus/textures/doors/door.xpm", &data->door.width, &data->door.height);
+	if (!data->ea.img || !data->no.img || !data->so.img || !data->we.img || !data->door.img)
 		error_mesg("invalid texter\n");
 	data->no.addr =  mlx_get_data_addr(data->no.img, &data->no.bits_per_pixel, &data->no.size_line, &data->no.endian);
 	data->so.addr =  mlx_get_data_addr(data->so.img, &data->so.bits_per_pixel, &data->so.size_line, &data->so.endian);
 	data->we.addr =  mlx_get_data_addr(data->we.img, &data->we.bits_per_pixel, &data->we.size_line, &data->we.endian);
 	data->ea.addr =  mlx_get_data_addr(data->ea.img, &data->ea.bits_per_pixel, &data->ea.size_line, &data->ea.endian);
+	data->door.addr =  mlx_get_data_addr(data->door.img, &data->door.bits_per_pixel, &data->door.size_line, &data->door.endian);
 	set_texters(data);
 	return (data);
 }

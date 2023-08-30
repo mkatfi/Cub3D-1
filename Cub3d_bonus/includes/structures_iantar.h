@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 09:30:49 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 13:30:38 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_dda
 {
 	double	distance;
 	int	side;
+	int	door;
 }					t_dda;
 
 typedef struct s_texter
@@ -69,6 +70,7 @@ typedef struct s_data
 	t_texter	so;
 	t_texter	we;
 	t_texter	ea;
+	t_texter	door;
 	int		bits_per_pixel;
 	int		line_length;
 	int		m_width;
