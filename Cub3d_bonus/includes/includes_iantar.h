@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:03:41 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 10:50:42 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 00:28:58 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	dda_version(t_data *data);
 int	    game_loop(t_data *data);
 void	line(t_data *data, double x, double y, double angle, double len);
 unsigned int	    rgb_color(int r, int g, int b, int density);
-void    fake_3d(t_data *data, t_dda dda, int x, int tex);
+void    fake_3d(t_data *data, t_dda dda, int x, double tex);
 void	set_textuers(t_data *data);
 void	error_mesg(char *msg);
-unsigned int	get_pixel_color(t_data *data, int x, double y);
+unsigned int	get_pixel_color(t_data *data, double x, double y);
 void	mini_map(t_data *data);
 void	draw_square(t_data *data, int i, int j, int color);
 void	draw_player(t_data *data, t_pos pos, int color);

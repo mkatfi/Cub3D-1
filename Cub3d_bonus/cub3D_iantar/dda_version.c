@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/01 00:07:53 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 00:42:13 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	dda_version(t_data *data)
 	double	camera_x;
 	t_dda	dda;
 	t_pos	ray_dir;
-	int	tex;
+	double	tex;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)
@@ -116,17 +116,11 @@ void	dda_version(t_data *data)
 		ray_dir.x = data->dir.x + camera_x * data->plan.x;
 		ray_dir.y = data->dir.y + camera_x * data->plan.y;
 		dda = dda_distance(data, ray_dir);
-		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
-		{
-			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));//get the pos of the ray when it hit the wall
-		}
-		else
-		{
-			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
-		}
-		//printf("tex:%d\n", tex);
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
-		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
+		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
+			tex = (ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x) ;//get the pos of the ray when it hit the wall
+		else
+			tex = ((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y));
 		fake_3d(data, dda, x, tex);
 		x++;
  	}
@@ -215,10 +209,11 @@ void	draw_player(t_data *data, t_pos pos, int color)
 		angle += 0.1;
 	}
 }
-//dynamic texters , done but need to check++++++
 //mini map : need to check
-//doors
+//doorsmake
 
+
+//dynamic texters : done
 //gliss: done
 //curser : done
 //animation : done

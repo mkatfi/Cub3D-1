@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 11:53:05 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 13:36:33 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 00:27:47 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ unsigned int modify_clor(unsigned int color, int density)
 	return (r << 16 | g << 8 | b);
 } 
 
-void    fake_3d(t_data *data, t_dda dda, int x, int tex)
+void    fake_3d(t_data *data, t_dda dda, int x, double tex)
 {
 	double line_h;
 	int end;

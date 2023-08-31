@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:42:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/27 13:05:56 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 00:13:55 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	lin(t_data *data, double x, double y, double angle, double len)
 }
 unsigned int rgb_color(int r, int g, int b, int density)
 {
-	//printf("density:%d\n", density);
 	r -= density;
 	g -= density;
 	b -= density;
@@ -79,25 +78,4 @@ void	render_map(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	check = 1;
-	/*
-	while (i <  10 * GRID)
-	{
-		j = 0;
-		while (j < 12 * GRID)
-		{
-			if (data->map[i / GRID][j / GRID] == '1')
-				my_mlx_pixel_put(data, j, i, rgb_color(30, 255, 255, 0));
-			else
-			{
-				if (!(i % GRID) || !(j % GRID))
-					my_mlx_pixel_put(data, j, i, rgb_color(30, 255, 255, 0));
-				else
-					my_mlx_pixel_put(data, j, i, WITE);
-			}
-			j++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-	*/
 }
