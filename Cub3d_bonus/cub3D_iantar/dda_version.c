@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/31 09:16:12 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 00:07:53 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		dist.y =  ((ray_map.y + 1) - data->pos.y) * dy; 
 		step.y = 1;
 	}
-	// dda.door = 0;
+	dda.door = 0;
 	while (data->map[ray_map.y][ray_map.x] != '1')//here you must to make sure that x and y are in thier place
 	{
 		if (data->map[ray_map.y][ray_map.x] == 'D')
 		{
-			// dda.door = 1;
+			dda.door = 1;
 			break;
 		}
 		if (dist.x < dist.y)
@@ -124,6 +124,7 @@ void	dda_version(t_data *data)
 		{
 			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
 		}
+		//printf("tex:%d\n", tex);
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
 		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
 		fake_3d(data, dda, x, tex);
@@ -162,16 +163,13 @@ void	mini_map(t_data *data)
 	start.y = (int)(data->pos.y) - 12;
 	end.x = (int)(data->pos.x) + 20;
 	end.y = (int)(data->pos.y) + 12;
-	if (start.x < 0)
-		start.x = 0;
-	if (start.y < 0)
-		start.y = 0;
-	if (end.x > 41)//41 is the width of yhe map , change it to data->m_witdh 
-		end.x = 41;
-	if (end.y > 15)// 15 if the hight of yhe map chaange it to data->m_hight
-		end.y = 15;
+	start.x = 0;
+	end.x = data->m_width;
+	start.y = 0;
+	end.y = data->m_height;
 	j = start.y;
 	y = 0;
+
 	while (j < end.y)
 	{
 		i = start.x;
@@ -194,10 +192,14 @@ void	mini_map(t_data *data)
 	t_pos	pos;
 	pos.x = data->pos.x;
 	pos.y = data->pos.y;
-	if (pos.x > 20)
-		pos.x = 21;
-	if (pos.y > 12)
-		pos.y = 12;
+	// if (pos.x < 1)
+	// 	pos.x = 1;
+	// if (pos.y < 1)
+	// 	pos.y = 1;
+	// if (pos.x > data->m_width)
+	// 	pos.x = data->m_width - 1;
+	// if (pos.y > data->m_height)
+	//  	pos.y = data->m_height - 1;
 	draw_player(data, pos, RED);
 }
 
@@ -209,13 +211,14 @@ void	draw_player(t_data *data, t_pos pos, int color)
 	(void)color;
 	while (angle < 2 * PI)
 	{
-		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, PLAYER_DIM / 4);
+		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, PLAYER_DIM / 2);
 		angle += 0.1;
 	}
 }
-//dynamic texters , done but need to check
-//gliss
-//curser
-//animation
+//dynamic texters , done but need to check++++++
+//mini map : need to check
 //doors
-//mini map
+
+//gliss: done
+//curser : done
+//animation : done

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 13:45:26 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/31 22:42:36 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ t_data	*inisilize(char *av)
 	data->pos.x = 2;
 	data->pos.y = 2;
 	data->mlx = mlx_init(data->map);
-	data->m_width = 15;//use the parcing resulte
-	data->m_height = 41;//use the parcing resulte
+	data->m_width = 41;//use the parcing resulte
+	data->m_height = 15;//use the parcing resulte
 	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	data->ea.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/StoneUWL.xpm", &data->ea.width, &data->ea.height);
     data->no.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/Cub3D/textures/GrasswallL.xpm", &data->no.width, &data->no.height);
