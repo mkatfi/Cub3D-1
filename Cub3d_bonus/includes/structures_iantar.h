@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 13:30:38 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 21:01:57 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_texter
 typedef struct s_data
 {
 	t_dda	dda;
+	int		check_door;
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/29 20:23:14 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/30 21:01:06 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,7 @@ enum {
 //0x0029A0B1
 # define GRID 64
 # define MINI_GRID 10
+
+# define DOOR_OPEND 1
+# define DOOR_CLOSED 0
 #endif

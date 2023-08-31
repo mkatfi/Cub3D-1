@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 13:48:20 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/31 09:16:12 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		dist.y =  ((ray_map.y + 1) - data->pos.y) * dy; 
 		step.y = 1;
 	}
-	dda.door = 0;
+	// dda.door = 0;
 	while (data->map[ray_map.y][ray_map.x] != '1')//here you must to make sure that x and y are in thier place
 	{
 		if (data->map[ray_map.y][ray_map.x] == 'D')
 		{
-			dda.door = 1;
+			// dda.door = 1;
 			break;
 		}
 		if (dist.x < dist.y)

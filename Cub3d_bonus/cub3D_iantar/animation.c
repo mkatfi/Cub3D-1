@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 09:27:38 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 11:32:50 by iantar           ###   ########.fr       */
+/*   Updated: 2023/08/31 18:32:55 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	animation(t_data *data)
 		error_mesg("the texter is too big\n");
 	while (img.y < data->anim[frame / 50].height && screen.y < SCREEN_HEIGHT)
 	{
-		printf("data->anim[frame / 50].height:%d\n", data->anim[frame / 50].height);
 		img.x = 0;
 		screen.x = SCREEN_WIDTH / 2 - data->anim[frame / 50].width / 2;
 		while (img.x < data->anim[frame / 50].width && screen.x < SCREEN_WIDTH)
