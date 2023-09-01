@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 21:01:06 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 10:52:23 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ enum {
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
+
+# define SP 32
 # define W 119
 # define A 97
 # define S 115
@@ -34,6 +36,7 @@ enum {
 # define ESC 65307
 # define LEFT_ARR 65361
 # define RIGHT_ARR 65363
+
 # define X_TEX 0
 # define Y_TEX 1
 # define MOUSEMOVE  6
@@ -68,6 +71,6 @@ enum {
 # define GRID 64
 # define MINI_GRID 10
 
-# define DOOR_OPEND 1
-# define DOOR_CLOSED 0
+# define DOOR_OPEND 0
+# define DOOR_CLOSED 1
 #endif

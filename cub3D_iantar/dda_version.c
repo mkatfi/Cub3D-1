@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/28 15:48:12 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 09:19:30 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	dda_version(t_data *data)
 		ray_dir.x = data->dir.x + camera_x * data->plan.x;
 		ray_dir.y = data->dir.y + camera_x * data->plan.y;
 		dda = dda_distance(data, ray_dir);
+		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
 		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
 		{
 			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));//get the pos of the ray when it hit the wall
@@ -115,7 +116,6 @@ void	dda_version(t_data *data)
 			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
 		}
 		
-		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
 		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
 		fake_3d(data, dda, x, tex);
 		x++;

@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/31 20:34:09 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 11:54:57 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	key_up(int key_code, t_data *data)
 		data->input[1] = -1;
 	if (key_code == RIGHT_ARR || key_code == LEFT_ARR)
 		data->input[2] = -1;
+	if (key_code == SP)
+	{
+		data->door.state = DOOR_CLOSED;
+		data->input[3] = -1;
+	}
 	return 0;
 }	
 
@@ -45,7 +50,8 @@ void	rotate(double *x, double *y, double angle)
 
 int	key_press(int key_code, t_data *data)
 {
-	printf("%d\n", key_code);
+	if (key_code == SP)
+		data->input[3] = SP;
 	if (key_code == ESC)
 		close_win();
 	if (key_code == W || key_code == S)
@@ -119,6 +125,8 @@ int	hit_wall_(t_data *data, int key, int x_y)
 	{
 		if (data->map[(int)(check.y + 0.2 * sin(i))][(int)(check.x + 0.2 * cos(i))] == '1')
 			return (1);
+		if (data->map[(int)(check.y + 0.2 * sin(i))][(int)(check.x + 0.2 * cos(i))] == 'D' && data->door.state)
+			return (1);
 		i += PI / 3;
 	}
 	return (0);
@@ -128,6 +136,29 @@ int	game_loop(t_data *data)
 {
 	int	c;
 
+	while (data->map[(int)data->pos.y][(int)data->pos.x] == 'D')
+	{
+		if (data->input[0] == W)
+		{
+			data->pos.x += data->dir.x * SPEED;
+			data->pos.y += data->dir.y * SPEED;
+		}
+		if (data->input[0] == S)
+		{
+			data->pos.x += (-1) * data->dir.x * SPEED;
+			data->pos.y += (-1) * data->dir.y * SPEED;
+		}
+		if (data->input[1] == D)
+		{
+			data->pos.x += (-1) * data->dir.y * SPEED;
+			data->pos.y += data->dir.x * SPEED;
+		}
+		if (data->input[1] == A)
+		{
+			data->pos.x += data->dir.y * SPEED;
+			data->pos.y += (-1) * data->dir.x * SPEED;
+		}
+	}
 	if (data->input[0] == W)
 	{
 		if (!hit_wall_(data, W, X_TEX))
@@ -168,7 +199,14 @@ int	game_loop(t_data *data)
 		rotate(&data->dir.x, &data->dir.y, 0.03 * c);
 		rotate(&data->plan.x, &data->plan.y, 0.03 * c);
 	}
-	render_map(data);
+	if (data->input[3] == SP)
+	{
+		//printf("OPEN\n");
+		data->door.state = DOOR_OPEND;
+	}
+	// else
+	// 	printf("NOT\n");
+	render_map(data);//??
 	dda_version(data);
 	animation(data);
 	return (0);

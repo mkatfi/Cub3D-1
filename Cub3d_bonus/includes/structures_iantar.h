@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/30 21:01:57 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 10:54:01 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_texter
 	int		height;
 	int		endian;
 	int		width;
+	int		state;
 	
 }					t_texter; 
 
@@ -82,7 +83,7 @@ typedef struct s_data
 	t_pos	pos;
 	t_dir	dir;
 	t_plan	plan;
-	int		input[3];
+	int		input[4];
 }					t_data;
 
 #endif

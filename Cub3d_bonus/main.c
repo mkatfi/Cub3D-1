@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/08/31 22:42:36 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 10:47:55 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_data	*inisilize(char *av)
 	data->plan.y = 0;//tan(33)
 	data->pos.x = 2;
 	data->pos.y = 2;
+	data->door.state = DOOR_CLOSED;
 	data->mlx = mlx_init(data->map);
 	data->m_width = 41;//use the parcing resulte
 	data->m_height = 15;//use the parcing resulte
