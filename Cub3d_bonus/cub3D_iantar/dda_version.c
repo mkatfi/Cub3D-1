@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/01 15:01:48 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 15:11:16 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ double	magnitude(double x, double y)
 
 double	distace_between(t_pos pos, cor_int ray_map)
 {
-	printf("&&&&&&&&&:: %f\n", magnitude(fabs(pos.x - ray_map.x), fabs(pos.y - ray_map.y)));//the problem here , it's bigger
 	return (magnitude(fabs(pos.x - ray_map.x), fabs(pos.y - ray_map.y)));
 }
 
@@ -68,27 +67,16 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || distace_between(data->pos, ray_map) > 2))
 		{
 			dda.door = 1;
-			//printf("door_closed\n");
 			break;
 		}
 		if (dist.x < dist.y)
 		{
-			// if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || dist.x  - dx > 2))
-			// {
-			// 	dda.door = 1;
-			// 	break;
-			// }
 			dist.x += dx;
 			ray_map.x += step.x;
 			dda.side = 1;
 		}
 		else
 		{
-			// if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || dist.y  - dy > 2))
-			// {
-			// 	dda.door = 1;
-			// 	break;
-			// }
 			dist.y += dy;
 			ray_map.y += step.y;
 			dda.side = 0;
@@ -187,7 +175,6 @@ void	mini_map(t_data *data)
 		x = 0;
 		while (i < end.x)
 		{
-			//printf("i:%d\n", i);
 			if (data->map[j][i] == '1')
 				draw_square(data, x, y, GRAY);
 			else if (data->map[j][i] == 'D')
@@ -203,14 +190,6 @@ void	mini_map(t_data *data)
 	t_pos	pos;
 	pos.x = data->pos.x;
 	pos.y = data->pos.y;
-	// if (pos.x < 1)
-	// 	pos.x = 1;
-	// if (pos.y < 1)
-	// 	pos.y = 1;
-	// if (pos.x > data->m_width)
-	// 	pos.x = data->m_width - 1;
-	// if (pos.y > data->m_height)
-	//  	pos.y = data->m_height - 1;
 	draw_player(data, pos, RED);
 }
 
