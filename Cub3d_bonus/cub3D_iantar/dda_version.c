@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/01 11:58:04 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 15:01:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	dda.door = 0;
 	while (data->map[ray_map.y][ray_map.x] != '1')//here you must to make sure that x and y are in thier place
 	{
-		if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || distace_between(data->pos, ray_map) > 1))
+		if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || distace_between(data->pos, ray_map) > 2))
 		{
 			dda.door = 1;
 			//printf("door_closed\n");
@@ -73,12 +73,22 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 		}
 		if (dist.x < dist.y)
 		{
+			// if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || dist.x  - dx > 2))
+			// {
+			// 	dda.door = 1;
+			// 	break;
+			// }
 			dist.x += dx;
 			ray_map.x += step.x;
 			dda.side = 1;
 		}
 		else
 		{
+			// if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || dist.y  - dy > 2))
+			// {
+			// 	dda.door = 1;
+			// 	break;
+			// }
 			dist.y += dy;
 			ray_map.y += step.y;
 			dda.side = 0;
