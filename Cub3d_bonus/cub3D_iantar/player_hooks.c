@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/01 16:12:31 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/01 18:54:26 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,27 +136,27 @@ int	game_loop(t_data *data)
 {
 	int	c;
 
-	while (data->map[(int)data->pos.y][(int)data->pos.x] == 'D')
+	while  (data->map[(int)data->pos.y][(int)data->pos.x] == 'D')
 	{
 		if (data->input[0] == W)
 		{
-			data->pos.x += data->dir.x * SPEED;
-			data->pos.y += data->dir.y * SPEED;
+			data->pos.x += data->dir.x * SPEED * 10;
+			data->pos.y += data->dir.y * SPEED * 10;
 		}
 		if (data->input[0] == S)
 		{
-			data->pos.x += (-1) * data->dir.x * SPEED;
-			data->pos.y += (-1) * data->dir.y * SPEED;
+			data->pos.x += (-1) * data->dir.x * SPEED * 10;
+			data->pos.y += (-1) * data->dir.y * SPEED * 10;
 		}
 		if (data->input[1] == D)
 		{
-			data->pos.x += (-1) * data->dir.y * SPEED;
-			data->pos.y += data->dir.x * SPEED;
+			data->pos.x += (-1) * data->dir.y * SPEED * 10;
+			data->pos.y += data->dir.x * SPEED * 10;
 		}
 		if (data->input[1] == A)
 		{
-			data->pos.x += data->dir.y * SPEED;
-			data->pos.y += (-1) * data->dir.x * SPEED;
+			data->pos.x += data->dir.y * SPEED * 10;
+			data->pos.y += (-1) * data->dir.x * SPEED * 10;
 		}
 	}
 	if (data->input[0] == W)

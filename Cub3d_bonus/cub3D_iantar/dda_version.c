@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/01 15:11:16 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/02 10:36:43 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	dda_version(t_data *data)
 	mini_map(data);
 }
 
+
 void	draw_square(t_data *data, int i, int j, int color)
 {
 	int	x;
@@ -149,7 +150,6 @@ void	draw_square(t_data *data, int i, int j, int color)
 		y++;
 	}
 }
-
 void	mini_map(t_data *data)
 {
 	cor_int	start;
@@ -193,6 +193,36 @@ void	mini_map(t_data *data)
 	draw_player(data, pos, RED);
 }
 
+void	draw_square_(t_data *data, cor_int cor, int grid, int color)
+{
+	int	x;
+	int	y;
+
+	j = 0;
+	while (j < grid)
+	{
+		i = 0;
+		while (i < grid)
+		{
+			my_mlx_pixel_put(data, cor.x * grid, + x, cor.y * grid + y, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+void	new_mini_map(t_data *data)
+{
+	cor_int	mini;
+
+	mini.x = SCREEN_WIDTH / 4;
+	mini.y = SCREEN_HEIGHT / 4;
+	while (i < )
+	{
+		/* code */
+	}
+		
+}
 void	draw_player(t_data *data, t_pos pos, int color)
 {
 	double	angle;
