@@ -1,18 +1,19 @@
 
-NO /nfs/homes/iantar/Desktop/cub3d_team/textures/GrasswallL.xpm
-SO /nfs/homes/iantar/Desktop/cub3d_team/textures/SnowbrickL.xpm
-WE /nfs/homes/iantar/Desktop/cub3d_team/textures/MultibrickL.xpm
-EA /nfs/homes/iantar/Desktop/cub3d_team/textures/StoneUWL.xpm
+NO /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/GrasswallL.xpm
+SO /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/SnowbrickL.xpm
+WE /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/MultibrickL.xpm
+EA /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/StoneUWL.xpm
 
 F 220,100,0
 C 225,30,0
 
 
 
+
          1111111111111111111111111
          1000000000110000000000N111
-         111111000000001111111111
-11111111110000000000000011111
+         111111111111000000000011111
+11111111111111111111100011111111
 1011000001110000000000001 
 10010000000000000000001111111111
 111111111011000001110000000000001

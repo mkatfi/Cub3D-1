@@ -1,4 +1,4 @@
-NAME = cub3D
+NAME = cub3D_bonus
 
 CC = clang
 
@@ -10,23 +10,24 @@ FLAGS = -Wall -Wextra -Werror  -fsanitize=address -g3
 
 MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC =	mandatory/main.c \
-		mandatory/engine/utils1.c \
-		mandatory/engine/render_map.c \
-		mandatory/engine/player_hooks.c \
-		mandatory/engine/dda_version.c \
-		mandatory/engine/fake_3d.c \
-		mandatory/engine/set_textuers.c \
-		mandatory/parcing/get_next_line.c\
-		mandatory/parcing/ft_split.c \
-		mandatory/parcing/function_libft_used.c \
-		mandatory/parcing/function_libft.c \
-		mandatory/parcing/fun_read_and_partition_map.c \
-		mandatory/parcing/fun_used_check_map_in_main.c \
-		mandatory/parcing/function_check_map.c \
-		mandatory/parcing/function_check_texter.c \
-		mandatory/parcing/fun_check_newline.c \
-		mandatory/parcing/check_plus_texter.c 
+SRC = main.c \
+		cub3D_iantar/utils1.c \
+		cub3D_iantar/render_map.c \
+		cub3D_iantar/player_hooks.c \
+		cub3D_iantar/dda_version.c \
+		cub3D_iantar/animation.c \
+		cub3D_iantar/fake_3d.c \
+		cub3D_iantar/set_textuers.c \
+		parcing/get_next_line.c\
+		parcing/ft_split.c \
+		parcing/function_libft_used.c \
+		parcing/function_libft.c \
+		parcing/fun_read_and_partition_map.c \
+		parcing/fun_used_check_map_in_main.c \
+		parcing/function_check_map.c \
+		parcing/function_check_texter.c \
+		parcing/fun_check_newline.c \
+		parcing/check_plus_texter.c 
 
 OBJ = ${SRC:.c=.o}
 
