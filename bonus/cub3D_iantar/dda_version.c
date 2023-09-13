@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/13 10:33:36 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/13 12:40:36 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	double	dy;
 	cor_int	step;
 	t_pos	dist;
-	//int		side;
 	cor_int	ray_map;
 	t_dda	dda;
 
@@ -124,8 +123,6 @@ void	dda_version(t_data *data)
 		x++;
  	}
 	mini_map(data);
-	//draw_player(data, data->pos, RED);
-	//new_mini_map(data);
 }
 
 
@@ -165,39 +162,44 @@ void	draw_square_(t_data *data, cor_int cor, int grid, int color)
 	}
 }
 
+void	draw_player_(t_data *data)
+{
+	double	angle;
+
+	angle = 0;
+	while (angle < 2 * PI)
+	{
+		line(data, 50, 50, angle, PLAYER_DIM / 2);
+		angle += 0.1;
+	}
+}
+
 void	mini_map(t_data *data)
 {
-	int	i;
-	int	j;
 	cor_int	cor;
+	cor_int	m;
 	
 	cor.y = 0;
-	j = data->pos.y - data->m_height / 4;
-	if (j < 0)
-		j = 0;
+	m.y = data->pos.y - 5;
 	while (cor.y * MINI_GRID < SCREEN_HEIGHT / 5)
 	{
 		cor.x = 0;
-		i = data->pos.x - data->m_width / 4;
-		if (i < 0)
-			i = 0;
+		m.x = data->pos.x - 5;
 		while (cor.x * MINI_GRID < SCREEN_WIDTH / 5)
 		{
-			if (i >= data->m_height || j >= data->m_width)
-				draw_square_(data, cor, MINI_GRID, BLACK);
-			else if (data->map[j][i] == '1')
+			if ((m.x < 0 || m.y < 0) || (m.y >= data->m_height || m.x >= data->m_width) || (data->map[m.y][m.x] == '1'))
 				draw_square_(data, cor, MINI_GRID, GRAY);
-			else if (data->map[j][i] == 'D')
+			else if (data->map[m.y][m.x] == 'D')
 				draw_square_(data, cor, MINI_GRID, BRWON);
 			else	
 				draw_square_(data, cor, MINI_GRID, CYAN);
 			cor.x++;
-			i++;
+			m.x++;
 		}
 		cor.y++;
-		j++;
+		m.y++;
 	}
-	draw_player(data, data->pos, RED);
+	draw_player_(data);
 }
 
 void	draw_player(t_data *data, t_pos pos, int color)
@@ -206,8 +208,8 @@ void	draw_player(t_data *data, t_pos pos, int color)
 
 	angle = 0;
 	(void)color;
-	// if (pos.x * MINI_GRID > SCREEN_WIDTH / 5 - 5)
-	// 	pos.x = SCREEN_WIDTH / (5 * MINI_GRID) - 5;
+	if (pos.x * MINI_GRID > SCREEN_WIDTH / 5 - 5)
+		pos.x = SCREEN_WIDTH / (5 * MINI_GRID) - 1;
 	if (pos.y * MINI_GRID > (SCREEN_HEIGHT / 5) - 5)
 		pos.y = SCREEN_HEIGHT / (5 * MINI_GRID) - 1;
 	while (angle < 2 * PI)

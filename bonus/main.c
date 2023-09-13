@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/13 09:57:39 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/13 12:21:11 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ void inisilize(t_data *data, t_textures *txt)
 	data->pos = get_pos(data->map);
 	data->door.state = DOOR_CLOSED;
 	data->mlx = mlx_init(data->map);
-	data->m_width = 130;//use the parcing resulte
-	data->m_height = 65;//use the parcing resulte
+	data->m_width = 130;//12;use the parcing resulte
+	data->m_height = 65;//10;use the parcing resulte
 	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	data->ea.img = mlx_xpm_file_to_image(data->mlx , txt->ea, &data->ea.width, &data->ea.height);
     data->no.img = mlx_xpm_file_to_image(data->mlx, txt->no, &data->no.width, &data->no.height);
@@ -200,7 +200,6 @@ int	main(int ac, char *av[])
 		(freepath(data->map), freepath(data->mapm),
 			free(data), ft_error("Error2\n"));
 	inisilize(data, txt);
-	printf("height:%d, width:%d\n", data->m_height, data->m_width);
 	render_map(data);
 	player_hooks(data);
 	mlx_loop(data->mlx);
