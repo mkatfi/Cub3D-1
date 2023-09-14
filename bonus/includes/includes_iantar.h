@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes_iantar.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 04:12:20 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/12 04:12:58 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/14 13:29:18 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	error_mesg(char *msg);
 unsigned int	get_pixel_color(t_data *data, double x, double y);
 void	mini_map(t_data *data);
 void	draw_square(t_data *data, int i, int j, int color);
-void	draw_player(t_data *data, t_pos pos, int color);
+//void	draw_player(t_data *data, t_pos pos, int color);
 void    animation(t_data *data);
 void	new_mini_map(t_data *data);
 

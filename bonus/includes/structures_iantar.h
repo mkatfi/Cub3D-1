@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures_iantar.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:05:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/12 02:32:03 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/14 14:38:27 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ typedef struct s_coor_int
 	int	x;
 	int	y;
 }					cor_int;
+
+typedef struct s_dist
+{
+	double	dx;
+	double	dy;
+}				t_dist;
+
+typedef struct s_info
+{
+	cor_int	ray_map;
+	cor_int	step;
+	t_pos	dist;
+}					t_info;
 
 typedef struct s_plan
 {

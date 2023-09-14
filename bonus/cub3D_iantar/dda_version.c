@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/13 12:40:36 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/14 15:23:57 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,67 +22,88 @@ double	distace_between(t_pos pos, cor_int ray_map)
 	return (magnitude(fabs(pos.x - ray_map.x), fabs(pos.y - ray_map.y)));
 }
 
-t_dda	dda_distance(t_data *data, t_pos ray_dir)
+t_info	get_step_dist(t_data *data, t_pos ray_dir, t_dist ds)
 {
-	double	dx;
-	double	dy;
-	cor_int	step;
-	t_pos	dist;
-	cor_int	ray_map;
-	t_dda	dda;
+	t_info	info;
 
-	dx = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.x);//there is a problem here
-	dy = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.y);
-
-	ray_map.x = (int)data->pos.x;
-	ray_map.y = (int)data->pos.y;
+	info.ray_map.x = (int)data->pos.x;
+	info.ray_map.y = (int)data->pos.y;
 	if (ray_dir.x > 0)
 	{
-		step.x = 1;
-		dist.x = ((ray_map.x + 1) - data->pos.x) * dx;
+		info.step.x = 1;
+		info.dist.x = ((info.ray_map.x + 1) - data->pos.x) * ds.dx;
 	}
 	else
 	{
-		step.x = -1;
-		dist.x =  (data->pos.x - ray_map.x) * dx;
+		info.step.x = -1;
+		info.dist.x =  (data->pos.x - info.ray_map.x) * ds.dx;
 	}
 	if (ray_dir.y < 0)
 	{
-		dist.y = (data->pos.y - ray_map.y) * dy;
-		step.y = -1;
+		info.dist.y = (data->pos.y - info.ray_map.y) * ds.dy;
+		info.step.y = -1;
 	}
 	else
 	{
-		dist.y =  ((ray_map.y + 1) - data->pos.y) * dy; 
-		step.y = 1;
+		info.dist.y =  ((info.ray_map.y + 1) - data->pos.y) * ds.dy;
+		info.step.y = 1;
 	}
-	dda.door = 0;
-	
-	// while (data->map[ray_map.y][ray_map.x] != '1' )//here you must to make sure that x and y are in thier place
-	while (ray_map.y >= 0 && ray_map.y < data->m_height && ray_map.x >= 0 && ray_map.x < data->m_width &&
-       data->map[ray_map.y][ray_map.x] != '1')
+	return (info);
+}
+
+int	ray_hit_wall(t_data *data, t_info *info)
+{
+	return (info->ray_map.y >= 0 && info->ray_map.y < data->m_height && info->ray_map.x >= 0 && info->ray_map.x < data->m_width &&
+       data->map[info->ray_map.y][info->ray_map.x] != '1');
+}
+
+int	check_door(t_data *data, t_info *info)
+{
+	return (data->map[info->ray_map.y][info->ray_map.x] == 'D' && (data->door.state || distace_between(data->pos, info->ray_map) > 2));
+}
+
+t_dda	calculate_dist(t_data *data, t_info *info, t_dist ds)
+{
+	t_dda	dda;
+
+	if (data->door.state)
+		dda.door = 0;
+	while (ray_hit_wall(data, info))
 	{
-		if (data->map[ray_map.y][ray_map.x] == 'D' && (data->door.state || distace_between(data->pos, ray_map) > 2))
+		if (check_door(data, info))
 		{
-			dda.door = 1;
+			dda.door = 1;//to check if it is a door or not
+			data->door.state = DOOR_CLOSED;
 			break;
 		}
-		if (dist.x < dist.y)
+		dda.side = (info->dist.x < info->dist.y);//norm
+		if (info->dist.x < info->dist.y)
 		{
-			dist.x += dx;
-			ray_map.x += step.x;
-			dda.side = 1;
+			info->dist.x += ds.dx;
+			info->ray_map.x += info->step.x;
 		}
 		else
 		{
-			dist.y += dy;
-			ray_map.y += step.y;
-			dda.side = 0;
+			info->dist.y += ds.dy;
+			info->ray_map.y += info->step.y;
 		}
 	}
+	return (dda);
+}
+
+t_dda	dda_distance(t_data *data, t_pos ray_dir)
+{
+	t_dist	ds;
+	t_info	info;
+	t_dda	dda;
+
+	ds.dx = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.x);//there is a problem here
+	ds.dy = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.y);
+	info = get_step_dist(data, ray_dir, ds);
+	dda = calculate_dist(data, &info, ds);
 	if (dda.side)
 	{
-		dda.distance = dist.x - dx;
+		dda.distance = info.dist.x - ds.dx;
 		if (ray_dir.x > 0)
 			dda.side = NO;
 		else
@@ -90,7 +111,7 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	}
 	else
 	{
-		dda.distance = dist.y - dy;
+		dda.distance = info.dist.y - ds.dy;
 		if (ray_dir.y > 0)
 			dda.side = EA;
 		else
@@ -98,6 +119,8 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	}
 	return (dda);
 }
+
+//t_dda	get_dda()//it will gives you the side where the ray hits, and the distance
 
 void	dda_version(t_data *data)
 {
@@ -125,25 +148,6 @@ void	dda_version(t_data *data)
 	mini_map(data);
 }
 
-
-// void	draw_square(t_data *data, int i, int j, int color)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	y = 0;
-// 	while (y < MINI_GRID)
-// 	{
-// 		x = 0;
-// 		while (x < MINI_GRID)
-// 		{
-// 			my_mlx_pixel_put(data, i * MINI_GRID + x, j * MINI_GRID + y, color);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
 void	draw_square_(t_data *data, cor_int cor, int grid, int color)
 {
 	int	x;
@@ -162,7 +166,7 @@ void	draw_square_(t_data *data, cor_int cor, int grid, int color)
 	}
 }
 
-void	draw_player_(t_data *data)
+void	draw_player(t_data *data)
 {
 	double	angle;
 
@@ -199,26 +203,6 @@ void	mini_map(t_data *data)
 		cor.y++;
 		m.y++;
 	}
-	draw_player_(data);
+	draw_player(data);
 }
 
-void	draw_player(t_data *data, t_pos pos, int color)
-{
-	double	angle;
-
-	angle = 0;
-	(void)color;
-	if (pos.x * MINI_GRID > SCREEN_WIDTH / 5 - 5)
-		pos.x = SCREEN_WIDTH / (5 * MINI_GRID) - 1;
-	if (pos.y * MINI_GRID > (SCREEN_HEIGHT / 5) - 5)
-		pos.y = SCREEN_HEIGHT / (5 * MINI_GRID) - 1;
-	while (angle < 2 * PI)
-	{
-		line(data, pos.x * MINI_GRID, pos.y * MINI_GRID, angle, PLAYER_DIM / 2);
-		angle += 0.1;
-	}
-}
-//doorsmake
-
-
-//dynamic texters : done

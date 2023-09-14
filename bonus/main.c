@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/13 12:21:11 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/14 10:35:45 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void inisilize(t_data *data, t_textures *txt)
 	data->mlx_win = mlx_new_window(data->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
 	data->ea.img = mlx_xpm_file_to_image(data->mlx , txt->ea, &data->ea.width, &data->ea.height);
     data->no.img = mlx_xpm_file_to_image(data->mlx, txt->no, &data->no.width, &data->no.height);
+	//printf("height:%d, width:%d\n",data->no.height,  data->no.width);
     data->so.img = mlx_xpm_file_to_image(data->mlx, txt->so, &data->so.width, &data->so.height);
     data->we.img = mlx_xpm_file_to_image(data->mlx, txt->we, &data->we.width, &data->we.height);
     data->door.img = mlx_xpm_file_to_image(data->mlx, "/nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/doors/door.xpm", &data->door.width, &data->door.height);

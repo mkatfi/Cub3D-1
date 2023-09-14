@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/12 15:05:54 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/14 11:19:53 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,20 @@ t_plan	get_plan(t_dir dir)
 {
 	t_plan	plan;
 
-	plan.x = 0.66;
+	plan.x = TAN33;
 	plan.y = 0;
 	if (dir.x)
 	{
 		plan.x = 0;
 		if (dir.x > 0)
-			plan.y = 0.66;
+			plan.y = TAN33;
 		else
-			plan.y = -0.66;
+			plan.y = -TAN33;
 	}
 	else
 	{
 		if (dir.y > 0)
-			plan.x = -0.66;
+			plan.x = -TAN33;
 	}
 	return (plan);
 }

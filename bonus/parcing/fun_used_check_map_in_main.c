@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fun_used_check_map_in_main.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 01:52:09 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:15 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/14 11:55:42 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_play(t_data *p)
 				|| p->map[a][b] == 'W' || p->map[a][b] == 'E') 
 				p->player = k;
 			else if (p->map[a][b] != '0' && p->map[a][b] != '1' 
-				&& p->map[a][b] != ' ')
+				&& p->map[a][b] != ' ' && p->map[a][b] != 'D')
 				return (1);
 			else if (k != 32)
 				if (cheack_map(p->map, k) == 1)

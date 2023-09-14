@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/11 22:45:00 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/14 11:19:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 
 # define SPEED 0.05
 # define PLAYER_DIM 5
+# define TAN33 0.66
 
 # define MAPWIDTH 12
 # define MAPHEIGHT 10
