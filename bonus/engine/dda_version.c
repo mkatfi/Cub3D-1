@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/17 15:19:31 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:57:50 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	if (dda.side)
 	{
 		dda.distance = info.dist.x - ds.dx;
-		if (ray_dir.x > 0) 
+		if (ray_dir.x > 0)
 			dda.side = NO;
 		else
 			dda.side = WE;

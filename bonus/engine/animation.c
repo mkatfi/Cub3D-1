@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 09:27:38 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/18 10:33:43 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:57:27 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void	animation(t_data *data)
 	t_cor_int		screen;
 
 	img.y = -1;
-	screen.y = SCREEN_HEIGHT - data->anim[frame / TIME].height;
-	while (++img.y < data->anim[frame / TIME].height && screen.y < SCREEN_HEIGHT)
+	screen.y = SCREEN_HEIGHT - data->anim[frame / 30].height;
+	while (++img.y < data->anim[frame / 30].height && screen.y < SCREEN_HEIGHT)
 	{
 		img.x = 0;
-		screen.x = SCREEN_WIDTH / 2 - data->anim[frame / TIME].width / 2;
+		screen.x = SCREEN_WIDTH / 2 - data->anim[frame / 30].width / 2;
 		(screen.x < 0 || screen.y < 0) && error_mesg("the texter is too big\n");
-		while (img.x < data->anim[frame / TIME].width && screen.x < SCREEN_WIDTH)
+		while (img.x < data->anim[frame / 30].width && screen.x < SCREEN_WIDTH)
 		{
-			color[0] = get_color(data->anim[frame / TIME], img.x, img.y);
+			color[0] = get_color(data->anim[frame / 30], img.x, img.y);
 			color[1] = color[0];
 			if (color[1] >> 24 == 0)
 				my_mlx_pixel_put(data, screen.x, screen.y, color[0]);
@@ -45,6 +45,6 @@ void	animation(t_data *data)
 		}
 		screen.y++;
 	}
-	if (++frame > TIME * 12)
+	if (++frame > 30 * 12)
 		frame = 0;
 }
