@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 03:38:49 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:01 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:42:12 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_bonus.h"
 
 int	chek_comma(char *s)
 {
@@ -64,7 +64,6 @@ int	check_newline(char *s)
 	int	i;
 
 	i = check_chek(s);
-
 	if (chek_comma(s) == 1)
 		return (2);
 	while (s[i])

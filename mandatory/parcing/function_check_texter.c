@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:06:32 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:22 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 int	rgb(int r, int g, int b)
 {
@@ -60,8 +60,8 @@ int	check_xpm(char	*str)
 		return (1);
 	else if (ft_strcmp(s, ".xpm") != 0)
 		return (1);
-	/* if(check_path(str)== 1)
-	 	return(1);*/
+	if (check_path(str) == 1)
+		return (1);
 	return (0);
 }
 

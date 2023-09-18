@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fun_read_and_partition_map.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:53:03 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:10 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:27:29 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 char	**git_map(char *srt)
 {
@@ -28,11 +28,11 @@ char	**git_map(char *srt)
 	close(fd);
 	if (!buff || !buff[0])
 		return (NULL);
-	m = ft_split(buff, '\n');
-	if (check_newline(buff) == 1)
+	if (check_newline(buff))
 		(free(buff), ft_error("ERROR new\n"));
 	else if (check_newline(buff) == 2)
 		(free(buff), ft_error("ERROR comm\n"));
+	m = ft_split(buff, '\n');
 	return (free(buff), m);
 }
 

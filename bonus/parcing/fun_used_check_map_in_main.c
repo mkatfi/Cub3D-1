@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fun_used_check_map_in_main.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 01:52:09 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/14 11:55:42 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:42:22 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_bonus.h"
 
 int	long_line(char **str)
 {
@@ -52,8 +52,8 @@ char	chaek_play_used(char **str)
 		b = -1;
 		while (str[a][++b])
 		{
-			if (str[a][b] == 'S' || str[a][b] == 'E' 
-				|| str[a][b] == 'N' || str[a][b] == 'W')
+			if (str[a][b] == 'S' || str[a][b] == 'E' || str[a][b] == 'N'
+				|| str[a][b] == 'W')
 			{
 				play++;
 				k = str[a][b];
@@ -80,10 +80,10 @@ int	check_play(t_data *p)
 		b = -1;
 		while (p->map[a][++b])
 		{
-			if (p->map[a][b] == 'N' || p->map[a][b] == 'S' 
-				|| p->map[a][b] == 'W' || p->map[a][b] == 'E') 
+			if (p->map[a][b] == 'N' || p->map[a][b] == 'S'
+				|| p->map[a][b] == 'W' || p->map[a][b] == 'E')
 				p->player = k;
-			else if (p->map[a][b] != '0' && p->map[a][b] != '1' 
+			else if (p->map[a][b] != '0' && p->map[a][b] != '1'
 				&& p->map[a][b] != ' ' && p->map[a][b] != 'D')
 				return (1);
 			else if (k != 32)
@@ -94,7 +94,7 @@ int	check_play(t_data *p)
 	return (0);
 }
 
-void	check_cub(char	*str)
+void	check_cub(char *str)
 {
 	int		i;
 	char	*s;

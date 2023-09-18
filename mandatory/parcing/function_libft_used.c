@@ -6,12 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 00:20:15 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 23:28:45 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 int	ft_strcmp(const char *str1, const char *str2)
 {

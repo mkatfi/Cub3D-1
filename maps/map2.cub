@@ -1,11 +1,11 @@
 
-NO /nfs/homes/iantar/Desktop/cub3d_team/textures/GrasswallL.xpm
-SO /nfs/homes/iantar/Desktop/cub3d_team/textures/SnowbrickL.xpm
-WE /nfs/homes/iantar/Desktop/cub3d_team/textures/MultibrickL.xpm
-EA /nfs/homes/iantar/Desktop/cub3d_team/textures/StoneUWL.xpm
+NO /nfs/homes/mkatfi/Desktop/cub3D/textures/rabaa.xpm
+SO /nfs/homes/mkatfi/Desktop/cub3D/textures/kari.xpm
+WE /nfs/homes/mkatfi/Desktop/cub3D/textures/sos.xpm
+EA /nfs/homes/mkatfi/Desktop/cub3D/textures/sdasi.xpm
 
-F 220,100,0
-C 225,30,0
+F 218,165,32
+C 0,139,139
 
 
 
@@ -13,7 +13,7 @@ C 225,30,0
          1000000000110000000000N111
          111111000000001111111111
 11111111110000000000000011111
-1011000001110000000000001 
+1011000001110000000000001
 10010000000000000000001111111111
 111111111011000001110000000000001
 11110111111111011100000010001111

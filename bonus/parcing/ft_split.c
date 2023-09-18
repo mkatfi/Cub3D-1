@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:57:58 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:56:57 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:42:08 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char	*s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*k;
 	int		j;

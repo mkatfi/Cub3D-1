@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   function_check_map.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:01:42 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 23:30:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/18 10:16:32 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_bonus.h"
 
 int	ft_check(char *str, char c)
 {
@@ -32,18 +32,19 @@ int	cheack_map(char **str, char c)
 	int	j;
 
 	i = 0;
-	if (ft_check(str[i], c) == 1 
-		|| ft_check(str[ft_aray_size(str) - 1], c) == 1)
+	if (ft_check(str[i], c) == 1 || ft_check(str[ft_aray_size(str) - 1],
+			c) == 1)
 		return (1);
 	while (str[i])
 	{
 		j = 0;
 		while (str[i][j])
 		{
-			if (str[i][j] == '0' || str[i][j] == c)
+			if (str[i][j] == '0' || str[i][j] == c || str[i][j] == 'D')
 			{
-				if (j == 0 || str[i + 1][j] == ' ' || str[i - 1][j] == ' ' 
-					|| str[i][j + 1] == ' ' || str[i][j - 1] == ' ')
+				if (j == 0 || i == 0 || str[i] == NULL || str[i][j + 1] == '\0'
+					|| str[i + 1][j] == ' ' || str[i - 1][j] == ' ' || str[i][j
+					+ 1] == ' ' || str[i][j - 1] == ' ')
 					return (1);
 			}
 			j++;

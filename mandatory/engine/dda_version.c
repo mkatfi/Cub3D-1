@@ -3,75 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   dda_version.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/12 10:29:40 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
-double	magnitude(double x, double y)
+t_info	get_step_dist(t_data *data, t_pos ray_dir, t_dist ds)
 {
-	return (sqrt(x * x + y * y));
-}
+	t_info	info;
 
-t_dda	dda_distance(t_data *data, t_pos ray_dir)
-{
-	double	dx;
-	double	dy;
-	cor_int	step;
-	t_pos	dist;
-	//int		side;
-	cor_int	ray_map;
-	t_dda	dda;
-
-	dx = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.x);//there is a problem here
-	dy = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.y);
-
-	ray_map.x = (int)data->pos.x;
-	ray_map.y = (int)data->pos.y;
+	info.ray_map.x = (int)data->pos.x;
+	info.ray_map.y = (int)data->pos.y;
 	if (ray_dir.x > 0)
 	{
-		step.x = 1;
-		dist.x = ((ray_map.x + 1) - data->pos.x) * dx;
+		info.step.x = 1;
+		info.dist.x = ((info.ray_map.x + 1) - data->pos.x) * ds.dx;
 	}
 	else
 	{
-		step.x = -1;
-		dist.x =  (data->pos.x - ray_map.x) * dx;
+		info.step.x = -1;
+		info.dist.x = (data->pos.x - info.ray_map.x) * ds.dx;
 	}
 	if (ray_dir.y < 0)
 	{
-		dist.y = (data->pos.y - ray_map.y) * dy;
-		step.y = -1;
+		info.dist.y = (data->pos.y - info.ray_map.y) * ds.dy;
+		info.step.y = -1;
 	}
 	else
 	{
-		dist.y =  ((ray_map.y + 1) - data->pos.y) * dy; 
-		step.y = 1;
-	}		
-   // while (data->map[ray_map.y][ray_map.x] != '1')//here you must to make sure that x and y are in thier place
-	while (ray_map.y >= 0 && ray_map.y < data->m_height && ray_map.x >= 0 && ray_map.x < data->m_width &&
-       data->map[ray_map.y][ray_map.x] != '1')
+		info.dist.y = ((info.ray_map.y + 1) - data->pos.y) * ds.dy;
+		info.step.y = 1;
+	}
+	return (info);
+}
+
+int	ray_hit_wall(t_data *data, t_info *info)
+{
+	return (info->ray_map.y >= 0 && info->ray_map.y
+		< data->m_height && info->ray_map.x >= 0
+		&& info->ray_map.x < data->m_width
+		&& data->map[info->ray_map.y][info->ray_map.x] != '1');
+}
+
+t_dda	calculate_dist(t_data *data, t_info *info, t_dist ds)
+{
+	t_dda	dda;
+
+	while (ray_hit_wall(data, info))
 	{
-		if (dist.x < dist.y)
+		if (info->dist.x < info->dist.y)
 		{
-			dist.x += dx;
-			ray_map.x += step.x;
+			info->dist.x += ds.dx;
+			info->ray_map.x += info->step.x;
 			dda.side = 1;
 		}
 		else
 		{
-			dist.y += dy;
-			ray_map.y += step.y;
+			info->dist.y += ds.dy;
+			info->ray_map.y += info->step.y;
 			dda.side = 0;
 		}
 	}
+	return (dda);
+}
+
+t_dda	dda_distance(t_data *data, t_pos ray_dir)
+{
+	t_dist	ds;
+	t_info	info;
+	t_dda	dda;
+
+	ds.dx = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.x);
+	ds.dy = magnitude(ray_dir.x, ray_dir.y) / fabs(ray_dir.y);
+	info = get_step_dist(data, ray_dir, ds);
+	dda = calculate_dist(data, &info, ds);
 	if (dda.side)
 	{
-		dda.distance = dist.x - dx;
+		dda.distance = info.dist.x - ds.dx;
 		if (ray_dir.x > 0)
 			dda.side = NO;
 		else
@@ -79,7 +91,7 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	}
 	else
 	{
-		dda.distance = dist.y - dy;
+		dda.distance = info.dist.y - ds.dy;
 		if (ray_dir.y > 0)
 			dda.side = EA;
 		else
@@ -91,30 +103,28 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 void	dda_version(t_data *data)
 {
 	double		x;
-	double	camera_x;
-	t_dda	dda;
-	t_pos	ray_dir;
-	int	tex;
+	double		camera_x;
+	t_dda		dda;
+	t_pos		ray_dir;
+	int			tex;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
-		camera_x = (2 * x) / SCREEN_WIDTH - 1;//x-coordinate in camera space
+		camera_x = (2 * x) / SCREEN_WIDTH - 1;
 		ray_dir.x = data->dir.x + camera_x * data->plan.x;
 		ray_dir.y = data->dir.y + camera_x * data->plan.y;
 		dda = dda_distance(data, ray_dir);
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
-		if (dda.side == EA || dda.side == SO)//dda.side == NO || dda.side == WE)
-		{
-			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x) - (int)(ray_dir.x * dda.distance + data->pos.x)) * GRID));//get the pos of the ray when it hit the wall
-		}
+		if (dda.side == EA || dda.side == SO)
+			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x)
+							- (int)(ray_dir.x * dda.distance + data->pos.x))
+						* GRID));
 		else
-		{
-			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y) - (int)(ray_dir.y * dda.distance + data->pos.y)) * GRID));
-		}
-		
-		//line(data, data->pos.x * GRID, data->pos.y * GRID, atan2(ray_dir.y, ray_dir.x), dda.distance * GRID * magnitude(ray_dir.x, ray_dir.y));
+			tex = abs((int)(((ray_dir.y * dda.distance + data->pos.y)
+							- (int)(ray_dir.y * dda.distance + data->pos.y))
+						* GRID));
 		fake_3d(data, dda, x, tex);
 		x++;
- 	}
+	}
 }

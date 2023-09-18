@@ -1,17 +1,17 @@
 
-    C  225,30,0
+    C  0,139,139
 NO /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/GrasswallL.xpm
 SO /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/SnowbrickL.xpm
 WE /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/MultibrickL.xpm
 EA /nfs/homes/iantar/Desktop/cub3d_team/bonus/textures/StoneUWL.xpm
-   F  220,100,0
+   F  218,165,32
  11111111111
 1N0000000001
 100011111111
 100000000001
 100000100001
-100001000001
+100001001001
 100000000001
-100000000001
+100111111001
 100000000001
  1111111111

@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:06:32 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:22 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:43:08 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_bonus.h"
 
 int	rgb(int r, int g, int b)
 {
@@ -27,7 +27,7 @@ int	check_txter(char **s)
 	c = 0;
 	while (s && s[++i])
 	{
-		strs = ft_split (s[i], ' ');
+		strs = ft_split(s[i], ' ');
 		if (strs[0] && !ft_strcmp(strs[0], "NO"))
 			c++;
 		if (strs[0] && !ft_strcmp(strs[0], "EA"))
@@ -45,7 +45,7 @@ int	check_txter(char **s)
 	return (0);
 }
 
-int	check_xpm(char	*str)
+int	check_xpm(char *str)
 {
 	int		i;
 	char	*s;
@@ -60,8 +60,6 @@ int	check_xpm(char	*str)
 		return (1);
 	else if (ft_strcmp(s, ".xpm") != 0)
 		return (1);
-	/* if(check_path(str)== 1)
-	 	return(1);*/
 	return (0);
 }
 

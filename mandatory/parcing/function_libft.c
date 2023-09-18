@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 10:36:40 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 void	check_digit(const char *s)
 {

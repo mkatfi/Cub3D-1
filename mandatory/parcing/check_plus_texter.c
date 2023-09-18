@@ -6,18 +6,26 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 03:48:34 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:56:53 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 void	check_colors_1(t_color *g, char **strs, char **s)
 {
 	if (!ft_strcmp (strs[0], "F"))
-		g->floor = rgb(ft_atoi (s[0]), ft_atoi (s[1]), ft_atoi (s[2]));
+	{
+		g->floor.r = ft_atoi (s[0]);
+		g->floor.g = ft_atoi (s[1]);
+		g->floor.b = ft_atoi (s[2]);
+	}
 	if (!ft_strcmp (strs[0], "C"))
-		g->ceiling = rgb(ft_atoi (s[0]), ft_atoi (s[1]), ft_atoi (s[2]));
+	{
+		g->ceiling.r = ft_atoi (s[0]);
+		g->ceiling.g = ft_atoi (s[1]);
+		g->ceiling.b = ft_atoi (s[2]);
+	}
 }
 
 void	check_colors(t_data *p, t_color *g)
@@ -39,7 +47,7 @@ void	check_colors(t_data *p, t_color *g)
 			while (s[j])
 				ft_atoi (s[j++]);
 			if (j != 3)
-				(freepath(s), freepath(strs), 
+				(freepath(s), freepath(strs),
 					ft_error("ERROR3\n"));
 			check_colors_1(g, strs, s);
 			freepath(s);
@@ -69,7 +77,7 @@ void	plus_txter_and_fc_1(t_data *p, t_textures *txt)
 		{
 			if (check_xpm (strs[1]) == 1)
 				(freepath(strs), ft_error ("Error4\n"));
-			txt->ea =ft_strdup(strs[1]);
+			txt->ea = ft_strdup(strs[1]);
 		}
 		freepath (strs);
 		i++;

@@ -1,17 +1,17 @@
 NAME = cub3D
 
+NAME_BONUS = cub3D_bonus
+
 CC = clang
 
 MLX_LIB = libmlx.a
 
-#LIBFT = libft.a
-
-FLAGS = -Wall -Wextra -Werror  -fsanitize=address -g3
+FLAGS = -Wall -Wextra -Werror
 
 MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC =	mandatory/main.c \
-		mandatory/engine/utils1.c \
+SRC =	mandatory/main.c mandatory/engine/initilize.c \
+		mandatory/engine/utils1.c mandatory/engine/hooks_utils.c \
 		mandatory/engine/render_map.c \
 		mandatory/engine/player_hooks.c \
 		mandatory/engine/dda_version.c \
@@ -26,43 +26,54 @@ SRC =	mandatory/main.c \
 		mandatory/parcing/function_check_map.c \
 		mandatory/parcing/function_check_texter.c \
 		mandatory/parcing/fun_check_newline.c \
-		mandatory/parcing/check_plus_texter.c 
+		mandatory/parcing/check_plus_texter.c \
+
+SRC_BONUS = bonus/main.c \
+		bonus/engine/utils1.c \
+		bonus/engine/mini_map.c \
+		bonus/engine/render_map.c \
+		bonus/engine/initialize.c \
+		bonus/engine/player_hooks.c \
+		bonus/engine/hooks_utils.c \
+		bonus/engine/dda_version.c \
+		bonus/engine/initialize_utils.c \
+		bonus/engine/animation.c \
+		bonus/engine/hit_wall_checker.c \
+		bonus/engine/fake_3d.c \
+		bonus/engine/dda_utils.c \
+		bonus/engine/set_textuers.c \
+		bonus/parcing/get_next_line.c\
+		bonus/parcing/ft_split.c \
+		bonus/parcing/function_libft_used.c \
+		bonus/parcing/function_libft.c \
+		bonus/parcing/fun_read_and_partition_map.c \
+		bonus/parcing/fun_used_check_map_in_main.c \
+		bonus/parcing/function_check_map.c \
+		bonus/parcing/function_check_texter.c \
+		bonus/parcing/fun_check_newline.c \
+		bonus/parcing/check_plus_texter.c \
 
 OBJ = ${SRC:.c=.o}
 
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
+
 %.o: %.c
 	$(CC) ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
-	
 
-#MLX = -lmlx -framework OpenGL -framework AppKit
+${NAME}: ${OBJ}
+	$(CC) ${FLAGS} $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
-${NAME}: ${LIBFT} ${OBJ}
-	$(CC) ${FLAGS} $(OBJ) ${LIBFT} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
-#@${CC} ${FLAGS} ${MLX} ${MLX_LIB} ${OBJ}   -o ${NAME}
-#	cc $(OBJ)  -o $(NAME)
+${NAME_BONUS}: ${OBJ_BONUS}
+	$(CC) ${FLAGS} $(OBJ_BONUS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME_BONUS)
 
 all: ${NAME}
 
-${LIBFT}:
-	@make -C ./libft
-	@make -C ./libft clean
-	@mv ./libft/libft.a .
-
+bonus: ${NAME_BONUS}
 
 clean:
-	@rm -f ${OBJ}
+	@rm -f ${OBJ} ${OBJ_BONUS}
 
 fclean: clean
-	@rm -f ${NAME}
-	@rm -f ${LIBFT}
+	@rm -f ${NAME} ${NAME_BONUS}
 
 re: fclean all
-
-COM = "cub3D"
-VAR = "pull"
-git:
-	git add .
-	git commit -m ${COM}
-	git ${VAR}
-
-#bonus:

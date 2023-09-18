@@ -6,11 +6,11 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 01:52:09 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/11 22:57:15 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes_iantar.h"
+#include "../includes/includes_mandatory.h"
 
 int	long_line(char **str)
 {
@@ -52,7 +52,7 @@ char	chaek_play_used(char **str)
 		b = -1;
 		while (str[a][++b])
 		{
-			if (str[a][b] == 'S' || str[a][b] == 'E' 
+			if (str[a][b] == 'S' || str[a][b] == 'E'
 				|| str[a][b] == 'N' || str[a][b] == 'W')
 			{
 				play++;
@@ -80,10 +80,10 @@ int	check_play(t_data *p)
 		b = -1;
 		while (p->map[a][++b])
 		{
-			if (p->map[a][b] == 'N' || p->map[a][b] == 'S' 
-				|| p->map[a][b] == 'W' || p->map[a][b] == 'E') 
+			if (p->map[a][b] == 'N' || p->map[a][b] == 'S'
+				|| p->map[a][b] == 'W' || p->map[a][b] == 'E')
 				p->player = k;
-			else if (p->map[a][b] != '0' && p->map[a][b] != '1' 
+			else if (p->map[a][b] != '0' && p->map[a][b] != '1'
 				&& p->map[a][b] != ' ')
 				return (1);
 			else if (k != 32)
