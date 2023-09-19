@@ -58,22 +58,22 @@ OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 %.o: %.c
-	$(CC) ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) ${FLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 ${NAME}: ${OBJ}
-	$(CC) ${FLAGS} $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) ${FLAGS} $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 ${NAME_BONUS}: ${OBJ_BONUS}
-	$(CC) ${FLAGS} $(OBJ_BONUS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME_BONUS)
+	@$(CC) ${FLAGS} $(OBJ_BONUS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME_BONUS)
 
 all: ${NAME}
 
-bonus: ${NAME_BONUS}
-
 clean:
-	@rm -f ${OBJ} ${OBJ_BONUS}
+	@rm -f ${OBJ} $(OBJ_BONUS)
 
 fclean: clean
 	@rm -f ${NAME} ${NAME_BONUS}
 
 re: fclean all
+
+bonus: ${NAME_BONUS}

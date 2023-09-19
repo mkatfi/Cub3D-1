@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initilize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 11:40:43 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/18 14:59:48 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,18 @@ char	get_player(char **map)
 	int	i;
 	int	j;
 
-	j = -1;
-	while (map[++j])
+	j = 0;
+	while (map[j])
 	{
-		i = -1;
-		while (map[j][++i])
+		i = 0;
+		while (map[j][i])
 		{
 			if (map[j][i] == 'N' || map[j][i] == 'S'
 				|| map[j][i] == 'W' || map[j][i] == 'E')
 				return (map[j][i]);
+			i++;
 		}
+		j++;
 	}
 	return (map[j][i]);
 }
