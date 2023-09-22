@@ -27,6 +27,7 @@ SRC =	mandatory/main.c mandatory/engine/initilize.c \
 		mandatory/parcing/function_check_texter.c \
 		mandatory/parcing/fun_check_newline.c \
 		mandatory/parcing/check_plus_texter.c \
+		mandatory/parcing/texters.c \
 
 SRC_BONUS = bonus/main.c \
 		bonus/engine/utils1.c \
@@ -52,6 +53,7 @@ SRC_BONUS = bonus/main.c \
 		bonus/parcing/function_check_texter.c \
 		bonus/parcing/fun_check_newline.c \
 		bonus/parcing/check_plus_texter.c \
+		bonus/parcing/texters.c \
 
 OBJ = ${SRC:.c=.o}
 

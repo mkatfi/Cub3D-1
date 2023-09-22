@@ -6,7 +6,7 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:06:32 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:43:08 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 12:42:33 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,11 @@ int	rgb(int r, int g, int b)
 
 int	check_txter(char **s)
 {
-	char	**strs;
-	int		i;
-	int		c;
-
-	i = -1;
-	c = 0;
-	while (s && s[++i])
-	{
-		strs = ft_split(s[i], ' ');
-		if (strs[0] && !ft_strcmp(strs[0], "NO"))
-			c++;
-		if (strs[0] && !ft_strcmp(strs[0], "EA"))
-			c++;
-		if (strs[0] && !ft_strcmp(strs[0], "SO"))
-			c++;
-		if (strs[0] && !ft_strcmp(strs[0], "WE"))
-			c++;
-		if (strs[0] && (!ft_strcmp(strs[0], "F") || !ft_strcmp(strs[0], "C")))
-			c++;
-		freepath(strs);
-	}
-	if (c != 6)
+	if (check_txter_1(s) == 1)
+		return (1);
+	if (check_txter_1(s) == 1)
+		return (1);
+	if (check_txter_3(s) == 1)
 		return (1);
 	return (0);
 }

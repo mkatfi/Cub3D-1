@@ -6,7 +6,7 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 19:37:53 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 11:33:46 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_read(int fd, char *container)
 	buff = ft_calloc(BUFFER_SIZE + 1 * sizeof(char), 1);
 	if (!buff)
 		return (NULL);
-	while (i != 0)
+	while (i != 0 && i != -1)
 	{
 		i = read(fd, buff, BUFFER_SIZE);
 		if (i == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:06:23 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/16 20:54:39 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 19:36:50 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define NEON_GREEN 0x0014E114
 
 # define SPEED 0.05
+# define TURN 0.03
 # define PLAYER_DIM 5
 # define TAN33 0.66
 
@@ -55,6 +56,7 @@
 # define MAPHEIGHT 10
 # define SCREEN_HEIGHT 900
 # define SCREEN_WIDTH 1500
+# define BUFFER_SIZE 1000
 // 0x0029A0B1
 # define GRID 64
 #endif

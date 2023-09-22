@@ -6,7 +6,7 @@
 /*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:16:02 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/17 13:54:59 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/21 13:23:17 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	main(int ac, char *av[])
 	map = git_map(av[1]);
 	partition_map(map, &data);
 	if (check_txter(map))
-		(freepath(map), ft_error("Error1\n"));
+		(freepath(map), ft_error("Error in texters\n"));
 	freepath(map);
 	plus_txter_and_fc(&data, &txt, &g);
 	if (plus_espice(&data))
-		(freepath(data.map), freepath(data.mapm), ft_error("Error2\n"));
+		(freepath(data.map), freepath(data.mapm), ft_error("Error in map\n"));
 	inisilize(&data, &txt);
 	data.color = g;
 	data.txt = txt;

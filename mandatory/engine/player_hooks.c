@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_hooks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 08:05:16 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 16:49:47 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	turn(t_data *data)
 	if (data->input[2] == RIGHT_ARR)
 	{
 		c = 1;
-		rotate(&data->dir.x, &data->dir.y, 0.03 * c);
-		rotate(&data->plan.x, &data->plan.y, 0.03 * c);
+		rotate(&data->dir.x, &data->dir.y, TURN * c);
+		rotate(&data->plan.x, &data->plan.y, TURN * c);
 	}
 	if (data->input[2] == LEFT_ARR)
 	{
 		c = -1;
-		rotate(&data->dir.x, &data->dir.y, 0.03 * c);
-		rotate(&data->plan.x, &data->plan.y, 0.03 * c);
+		rotate(&data->dir.x, &data->dir.y, TURN * c);
+		rotate(&data->plan.x, &data->plan.y, TURN * c);
 	}
 }
 

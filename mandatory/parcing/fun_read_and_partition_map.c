@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fun_read_and_partition_map.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:53:03 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/16 22:27:29 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:34:32 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ char	**git_map(char *srt)
 	if (!buff || !buff[0])
 		return (NULL);
 	if (check_newline(buff))
-		(free(buff), ft_error("ERROR new\n"));
+		(free(buff), ft_error("ERROR\n"));
 	else if (check_newline(buff) == 2)
-		(free(buff), ft_error("ERROR comm\n"));
+		(free(buff), ft_error("ERROR\n"));
 	m = ft_split(buff, '\n');
 	return (free(buff), m);
 }

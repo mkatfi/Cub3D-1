@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda_version.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 12:26:28 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/21 14:39:52 by iantar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ t_dda	dda_distance(t_data *data, t_pos ray_dir)
 	{
 		dda.distance = info.dist.x - ds.dx;
 		if (ray_dir.x > 0)
-			dda.side = NO;
+			dda.side = EA;
 		else
-			dda.side = WE;
+			dda.side = SO;
 	}
 	else
 	{
 		dda.distance = info.dist.y - ds.dy;
 		if (ray_dir.y > 0)
-			dda.side = EA;
+			dda.side = WE;
 		else
-			dda.side = SO;
+			dda.side = NO;
 	}
 	return (dda);
 }
@@ -116,7 +116,7 @@ void	dda_version(t_data *data)
 		ray_dir.y = data->dir.y + camera_x * data->plan.y;
 		dda = dda_distance(data, ray_dir);
 		dda.distance = dda.distance / magnitude(ray_dir.x, ray_dir.y);
-		if (dda.side == EA || dda.side == SO)
+		if (dda.side == NO || dda.side == WE)
 			tex = abs((int)(((ray_dir.x * dda.distance + data->pos.x)
 							- (int)(ray_dir.x * dda.distance + data->pos.x))
 						* GRID));

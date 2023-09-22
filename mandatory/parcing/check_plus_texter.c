@@ -6,7 +6,7 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 03:48:34 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 15:34:13 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_colors(t_data *p, t_color *g)
 				ft_atoi (s[j++]);
 			if (j != 3)
 				(freepath(s), freepath(strs),
-					ft_error("ERROR3\n"));
+					ft_error("ERROR\n"));
 			check_colors_1(g, strs, s);
 			freepath(s);
 		}
@@ -70,13 +70,13 @@ void	plus_txter_and_fc_1(t_data *p, t_textures *txt)
 		if (strs[0] && !ft_strcmp (strs[0], "NO"))
 		{
 			if (check_xpm (strs[1]) == 1)
-				(freepath(strs), ft_error ("Error4\n"));
+				(freepath(strs), ft_error ("Error\n"));
 			txt->no = ft_strdup(strs[1]);
 		}
 		if (strs[0] && !ft_strcmp (strs[0], "EA"))
 		{
 			if (check_xpm (strs[1]) == 1)
-				(freepath(strs), ft_error ("Error4\n"));
+				(freepath(strs), ft_error ("Error\n"));
 			txt->ea = ft_strdup(strs[1]);
 		}
 		freepath (strs);
@@ -98,13 +98,13 @@ void	plus_txter_and_fc_2(t_data *p, t_textures *txt)
 		if (strs[0] && !ft_strcmp(strs[0], "SO"))
 		{
 			if (check_xpm (strs[1]) == 1)
-				(freepath(strs), ft_error ("Error4\n"));
+				(freepath(strs), ft_error ("Error\n"));
 			txt->so = ft_strdup(strs[1]);
 		}
 		if (strs[0] && !ft_strcmp (strs[0], "WE"))
 		{
 			if (check_xpm (strs[1]) == 1)
-				(freepath(strs), ft_error ("Error4\n"));
+				(freepath(strs), ft_error ("Error\n"));
 			txt->we = ft_strdup(strs[1]);
 		}
 		freepath (strs);

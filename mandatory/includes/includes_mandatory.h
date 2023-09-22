@@ -6,7 +6,7 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:03:41 by iantar            #+#    #+#             */
-/*   Updated: 2023/09/16 20:51:06 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 12:35:59 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
-# endif
 
 void			inisilize(t_data *data, t_textures *txt);
 void			ft_check_1(char **map);
@@ -88,7 +84,9 @@ int				long_line(char **str);
 int				ft_aray_size(char **s);
 int				check_play(t_data *p);
 void			check_cub(char *str);
-
+int				check_txter_1(char **s);
+int				check_txter_2(char **s);
+int				check_txter_3(char **s);
 // void cheack_map(char **str);
 int				cheack_map(char **str, char c);
 int				plus_espice(t_data *p);

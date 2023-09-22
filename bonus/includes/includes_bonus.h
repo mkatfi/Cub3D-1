@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   includes_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iantar <iantar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 04:12:20 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/17 09:44:56 by iantar           ###   ########.fr       */
+/*   Updated: 2023/09/19 12:42:59 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ void			check_cub(char *str);
 int				cheack_map(char **str, char c);
 int				plus_espice(t_data *p);
 int				rgb(int r, int g, int b);
+int				check_txter_1(char **s);
+int				check_txter_2(char **s);
+int				check_txter_3(char **s);
 // check_texer
 int				check_txter(char **s);
 void			plus_txter_and_fc(t_data *p, t_textures *txt, t_color *g);

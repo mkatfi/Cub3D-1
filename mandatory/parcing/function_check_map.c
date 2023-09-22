@@ -6,7 +6,7 @@
 /*   By: mkatfi <mkatfi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:01:42 by mkatfi            #+#    #+#             */
-/*   Updated: 2023/09/16 20:44:33 by mkatfi           ###   ########.fr       */
+/*   Updated: 2023/09/19 12:39:39 by mkatfi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	cheack_map(char **str, char c)
 	int	j;
 
 	i = 0;
-	if (ft_check(str[i], c) == 1
-		|| ft_check(str[ft_aray_size(str) - 1], c) == 1)
+	if (ft_check(str[i], c) == 1 || ft_check(str[ft_aray_size(str) - 1],
+			c) == 1)
 		return (1);
 	while (str[i])
 	{
